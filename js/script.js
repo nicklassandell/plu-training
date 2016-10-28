@@ -177,7 +177,6 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		$timeout(function() {
 			var height = $scope.keypad.clientHeight;
 			$scope.keypadSpaceholder.style.height = height + 'px';
-			console.log($scope.keypadSpaceholder);
 		}, 5);
 
 	}
@@ -272,7 +271,8 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		$scope.setNewPLU();
 	});
 
-	$scope.input.addEventListener('keyup', function(e) {
+
+	$scope.inputUpdate = function(e) {
 		$scope.$apply(function() {
 
 			// Clicked enter, pass
@@ -287,6 +287,9 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			}
 
 		});
+	}
+	$scope.input.addEventListener('keyup', function(e) {
+		$scope.inputUpdate(e);
 	});
 
 
@@ -314,6 +317,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
 	// Input focus
 	$scope.input.addEventListener('focus', function(e) {
+		$scope.inputUpdate(e);
 		$scope.displayKeypad();
 	});
 

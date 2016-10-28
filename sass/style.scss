@@ -159,6 +159,7 @@ body {
 	transition-duration: .3s;
 	display: none;
 	border-top: 1px solid #d8d8d8;
+	-webkit-user-select: none;
 
 	&.visible {
 		transform: none;

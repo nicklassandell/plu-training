@@ -226,18 +226,19 @@ body {
   transition-duration: .3s;
   display: none;
   border-top: 1px solid #d8d8d8;
+  -webkit-user-select: none;
 }
-/* line 163, ../sass/style.scss */
+/* line 164, ../sass/style.scss */
 #overlay-keypad.visible {
   transform: none;
 }
-/* line 167, ../sass/style.scss */
+/* line 168, ../sass/style.scss */
 #overlay-keypad .num-row {
   height: 25%;
   max-width: 700px;
   margin: 0 auto;
 }
-/* line 172, ../sass/style.scss */
+/* line 173, ../sass/style.scss */
 #overlay-keypad .num-row .num {
   height: 100%;
   width: 32.5%;
@@ -247,27 +248,27 @@ body {
   color: #555;
   transition-duration: .2s;
 }
-/* line 181, ../sass/style.scss */
+/* line 182, ../sass/style.scss */
 #overlay-keypad .num-row .num:hover {
   background: rgba(0, 0, 0, 0.1);
 }
-/* line 185, ../sass/style.scss */
+/* line 186, ../sass/style.scss */
 #overlay-keypad .num-row .num:before {
   content: "";
   display: inline-block;
   height: 100%;
   vertical-align: middle;
 }
-/* line 192, ../sass/style.scss */
+/* line 193, ../sass/style.scss */
 #overlay-keypad .num-row .num:first-child {
   text-indent: 30px;
 }
-/* line 195, ../sass/style.scss */
+/* line 196, ../sass/style.scss */
 #overlay-keypad .num-row .num:last-child {
   text-indent: -30px;
 }
 
-/* line 204, ../sass/style.scss */
+/* line 205, ../sass/style.scss */
 select option:empty {
   display: none;
 }
