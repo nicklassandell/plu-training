@@ -174,41 +174,34 @@ body {
 .container .question-list-container {
   overflow: hidden;
   margin-top: 20px;
-  min-height: 130px;
+  min-height: 150px;
 }
 /* line 108, ../sass/style.scss */
 .container .question-list-container .question-list-item {
   display: block;
-  float: left;
-  clear: both;
   padding: 2px;
 }
-/* line 114, ../sass/style.scss */
+/* line 112, ../sass/style.scss */
 .container .question-list-container .question-list-item.halfway {
   background: #ffea5e;
 }
-/* line 117, ../sass/style.scss */
+/* line 115, ../sass/style.scss */
 .container .question-list-container .question-list-item.complete {
   background: #98e898;
 }
-/* line 122, ../sass/style.scss */
-.container .question-list-container .reset-all {
-  display: block;
-  clear: both;
-}
 
-/* line 131, ../sass/style.scss */
+/* line 128, ../sass/style.scss */
 .select-container {
   position: relative;
   display: inline-block;
   overflow: hidden;
   min-width: 50px;
 }
-/* line 137, ../sass/style.scss */
+/* line 134, ../sass/style.scss */
 .select-container span {
   position: static;
 }
-/* line 141, ../sass/style.scss */
+/* line 138, ../sass/style.scss */
 .select-container select {
   position: absolute;
   top: 0;
@@ -219,7 +212,7 @@ body {
   opacity: 0;
 }
 
-/* line 152, ../sass/style.scss */
+/* line 149, ../sass/style.scss */
 #overlay-keypad {
   position: fixed;
   top: 50%;
@@ -232,17 +225,17 @@ body {
   display: none;
   border-top: 1px solid #d8d8d8;
 }
-/* line 164, ../sass/style.scss */
+/* line 161, ../sass/style.scss */
 #overlay-keypad.visible {
   transform: none;
 }
-/* line 168, ../sass/style.scss */
+/* line 165, ../sass/style.scss */
 #overlay-keypad .num-row {
   height: 25%;
   max-width: 700px;
   margin: 0 auto;
 }
-/* line 173, ../sass/style.scss */
+/* line 170, ../sass/style.scss */
 #overlay-keypad .num-row .num {
   height: 100%;
   width: 32.5%;
@@ -251,27 +244,27 @@ body {
   font-size: 26px;
   color: #555;
 }
-/* line 181, ../sass/style.scss */
+/* line 178, ../sass/style.scss */
 #overlay-keypad .num-row .num:hover {
   background: rgba(0, 0, 0, 0.1);
 }
-/* line 185, ../sass/style.scss */
+/* line 182, ../sass/style.scss */
 #overlay-keypad .num-row .num:before {
   content: "";
   display: inline-block;
   height: 100%;
   vertical-align: middle;
 }
-/* line 192, ../sass/style.scss */
+/* line 189, ../sass/style.scss */
 #overlay-keypad .num-row .num:first-child {
   text-indent: 30px;
 }
-/* line 195, ../sass/style.scss */
+/* line 192, ../sass/style.scss */
 #overlay-keypad .num-row .num:last-child {
   text-indent: -30px;
 }
 
-/* line 204, ../sass/style.scss */
+/* line 201, ../sass/style.scss */
 select option:empty {
   display: none;
 }

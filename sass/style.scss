@@ -103,12 +103,10 @@ body {
 	.question-list-container {
 		overflow: hidden;
 		margin-top: 20px;
-		min-height: 130px;
+		min-height: 150px;
 
 		.question-list-item {
 			display: block;
-			float: left;
-			clear: both;
 			padding: 2px;
 
 			&.halfway {
@@ -120,8 +118,7 @@ body {
 		}
 
 		.reset-all {
-			display: block;
-			clear: both;
+
 		}
 	}
 
