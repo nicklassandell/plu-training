@@ -274,8 +274,9 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	});
 
 	$scope.input.addEventListener('focus', function(e) {
-		e.preventDefault();
 		$scope.displayKeypad();
+		e.preventDefault();
+		return false;
 	});
 
 	document.addEventListener('mouseup', function(e) {
