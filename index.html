@@ -7,33 +7,37 @@
 <body ng-controller="MainCtrl">
 
 	<div class="container">
-		<ul class="section-list">
-			<li ng-repeat="n in pluList track by $index" class="{{ currentSection == $index ? 'current' : '' }}" ng-click="$parent.currentSection = $index;">
-				Del {{ $index+1 }}
-			</li>
-		</ul>
 
-		<div class="test-container">
-			<input class="input" id="entry" type="text" placeholder="{{ showAnswer || showAnswerOnce ? currentPLU : '' }}" autofocus>
-
-			<div class="question-container">
-				<p ng-if="showImageOrText" class="question-txt" ng-bind="pluList[currentSection][currentPLU]"></p>
-				<img ng-if="!showImageOrText" class="question-img" alt="" ng-src="img/{{ currentPLU }}.jpg">
+		<div class="navigation">
+			<a href="#" ng-click="goToPreviousSection()" class="{{ isFirstSection() ? 'disabled' : '' }}">&lt;</a>
+			<div class="select-container">
+				<span class="label">Del {{ parseInt(currentSection)+1 }}</span>
+				<select ng-model="currentSection">
+					<option ng-repeat="n in pluList track by $index" value="{{$index}}">Del {{ $index+1 }}</option>
+				</select>
 			</div>
+			<a href="#" ng-click="goToNextSection()" class="{{ isLastSection() ? 'disabled' : '' }}">&gt;</a>
+		</div>
+
+		<input class="input" id="entry" type="number" placeholder="{{ showAnswer || showAnswerOnce ? currentPLU : '' }}" autofocus>
+
+		<div class="question-container">
+			<p ng-if="showImageOrText" class="question-txt" ng-bind="pluList[currentSection][currentPLU]"></p>
+			<img ng-if="!showImageOrText" class="question-img" alt="" ng-src="img/{{ currentPLU }}.jpg">
+		</div>
 
 
-			<p>
-				<input type="checkbox" ng-model="showAnswer" id="showAnswerChk">
-				<label for="showAnswerChk">Visa alltid svar</label>
+		<p>
+			<input type="checkbox" ng-model="showAnswer" id="showAnswerChk">
+			<label for="showAnswerChk">Visa alltid svar</label>
+		</p>
+
+		<div class="question-list-container">
+			<p class="question-list-item {{ ($parent.learned[key] > learnPoints.half-1 && $parent.learned[key] < learnPoints.full) ? 'halfway' : '';}} {{ $parent.learned[key] > learnPoints.full-1 ? 'complete' : ''; }}" ng-repeat="(key, value) in pluList[currentSection]">
+				<input type="checkbox" ng-checked="$parent.learnBlacklist.includes(key)" ng-click="toggleBlacklistPLU(key)">
+				{{ key +' '+ value }} {{ $parent.learned[key] }}
 			</p>
-
-			<div class="question-list-container">
-				<p class="question-list-item {{ ($parent.learned[key] > learnPoints.half-1 && $parent.learned[key] < learnPoints.full) ? 'halfway' : '';}} {{ $parent.learned[key] > learnPoints.full-1 ? 'complete' : ''; }}" ng-repeat="(key, value) in pluList[currentSection]">
-					<input type="checkbox" ng-checked="$parent.learnBlacklist.includes(key)" ng-click="toggleBlacklistPLU(key)">
-					{{ key +' '+ value }} {{ $parent.learned[key] }}
-				</p>
-				<a class="reset-all" ng-click="clearLearnedBySession()" href="#">Återställ räkning</a>
-			</div>
+			<a class="reset-all" ng-click="clearLearnedBySession()" href="#">Återställ räkning</a>
 		</div>
 	</div>
 

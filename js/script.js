@@ -140,17 +140,31 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
 			$scope.setNewPLU();
 			$scope.input.value = '';
-			$scope.flash('success');
 			$scope.showAnswerOnce = false;
 
 		}
 	}
 
-	$scope.flash = function(state) {
-		document.body.classList.add('flash-' + state);
-		setTimeout(function() {
-			document.body.classList.remove('flash-' + state);
-		}, 600);
+	$scope.getSectionCount = function() {
+		return Object.keys($scope.pluList).length-1;
+	}
+
+	$scope.isFirstSection = function() {
+		return $scope.currentSection === 0;
+	}
+	$scope.isLastSection = function() {
+		return $scope.currentSection == $scope.getSectionCount();
+	}
+
+	$scope.goToNextSection = function() {
+		if(!$scope.isLastSection()) {
+			$scope.currentSection++;
+		}
+	}
+	$scope.goToPreviousSection = function() {
+		if(!$scope.isFirstSection()) {
+			$scope.currentSection--;
+		}
 	}
 
 	$scope.setNewPLU = function() {
@@ -254,5 +268,8 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
 		});
 	});
+
+	// For use in index.html
+	$scope.parseInt = parseInt;
 
 }]);
