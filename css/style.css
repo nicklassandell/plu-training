@@ -1,0 +1,196 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 17, C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 8, ../sass/style.scss */
+html {
+  box-sizing: border-box;
+}
+
+/* line 11, ../sass/style.scss */
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* line 16, ../sass/style.scss */
+body {
+  background: #2e5174;
+  transition-duration: .2s;
+  color: #333;
+  font-family: 'Roboto';
+  font-size: 14px;
+  overflow: hidden;
+  /*
+  &.flash-success, &.flash-error {
+  	transition-duration: 0;
+  }
+  &.flash-success {
+  	background: #538437;
+  }
+  &.flash-error {
+  	background: #7A2A2A;
+  }
+  */
+}
+
+/* line 38, ../sass/style.scss */
+.container {
+  width: 700px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+/* line 46, ../sass/style.scss */
+.section-list {
+  display: block;
+  position: relative;
+  width: 10000px;
+}
+/* line 51, ../sass/style.scss */
+.section-list li {
+  display: inline-block;
+  padding: 10px 15px;
+  color: #FFF;
+  cursor: default;
+}
+/* line 57, ../sass/style.scss */
+.section-list li.current {
+  background: #FFF;
+  color: #333;
+  position: relative;
+  bottom: -1px;
+}
+
+/* line 66, ../sass/style.scss */
+.test-container {
+  background: #FFF;
+  padding: 30px;
+}
+/* line 70, ../sass/style.scss */
+.test-container .input {
+  display: block;
+  width: 100px;
+  margin: 0 auto;
+  padding: 10px;
+  font-size: 24px;
+  font-weight: 100;
+  border: 0;
+  border: 2px solid #bdbdbd;
+}
+/* line 81, ../sass/style.scss */
+.test-container .question-container {
+  height: 250px;
+  position: relative;
+  margin: 30px auto;
+}
+/* line 86, ../sass/style.scss */
+.test-container .question-container .question-txt, .test-container .question-container .question-img {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+/* line 94, ../sass/style.scss */
+.test-container .question-container .question-txt {
+  font-size: 56px;
+  white-space: nowrap;
+}
+/* line 99, ../sass/style.scss */
+.test-container .question-container .question-img {
+  max-width: 300px;
+  max-height: 250px;
+}
+/* line 105, ../sass/style.scss */
+.test-container .question-list-container {
+  overflow: hidden;
+  margin-top: 20px;
+  min-height: 130px;
+}
+/* line 110, ../sass/style.scss */
+.test-container .question-list-container .question-list-item {
+  display: block;
+  float: left;
+  clear: both;
+  padding: 2px;
+}
+/* line 116, ../sass/style.scss */
+.test-container .question-list-container .question-list-item.halfway {
+  background: #ffea5e;
+}
+/* line 119, ../sass/style.scss */
+.test-container .question-list-container .question-list-item.complete {
+  background: #98e898;
+}
+/* line 124, ../sass/style.scss */
+.test-container .question-list-container .reset-all {
+  display: block;
+  clear: both;
+}

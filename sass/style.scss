@@ -1,0 +1,130 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+
+html {
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+
+body {
+	background: #2e5174;
+	transition-duration: .2s;
+	color: #333;
+	font-family: 'Roboto';
+	font-size: 14px;
+	overflow: hidden;
+
+	/*
+	&.flash-success, &.flash-error {
+		transition-duration: 0;
+	}
+	&.flash-success {
+		background: #538437;
+	}
+	&.flash-error {
+		background: #7A2A2A;
+	}
+	*/
+}
+
+
+.container {
+    width: 700px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+}
+
+.section-list {
+	display: block;
+	position: relative;
+	width: 10000px;
+
+	li {
+		display: inline-block;
+		padding: 10px 15px;
+		color: #FFF;
+		cursor: default;
+
+		&.current {
+			background: #FFF;
+			color: #333;
+			position: relative;
+			bottom: -1px;
+		}
+	}
+}
+
+.test-container {
+	background: #FFF;
+	padding: 30px;
+
+	.input {
+		display: block;
+	    width: 100px;
+	    margin: 0 auto;
+	    padding: 10px;
+	    font-size: 24px;
+	    font-weight: 100;
+	    border: 0;
+	    border: 2px solid #bdbdbd;
+	}
+
+	.question-container {
+		height: 250px;
+		position: relative;
+		margin: 30px auto;
+
+		.question-txt, .question-img {
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translateX(-50%) translateY(-50%);
+		}
+
+		.question-txt {
+			font-size: 56px;
+			white-space: nowrap;
+		}
+
+		.question-img {
+			max-width: 300px;
+			max-height: 250px;
+		}
+	}
+
+	.question-list-container {
+		overflow: hidden;
+		margin-top: 20px;
+		min-height: 130px;
+
+		.question-list-item {
+			display: block;
+			float: left;
+			clear: both;
+			padding: 2px;
+
+			&.halfway {
+				background: #ffea5e;
+			}
+			&.complete {
+				background: #98e898;
+			}
+		}
+
+		.reset-all {
+			display: block;
+			clear: both;
+		}
+	}
+
+}

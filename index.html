@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="pluapp">
+<head>
+	<title>PLU Träning</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body ng-controller="MainCtrl">
+
+	<div class="container">
+		<ul class="section-list">
+			<li ng-repeat="n in pluList track by $index" class="{{ currentSection == $index ? 'current' : '' }}" ng-click="$parent.currentSection = $index;">
+				Del {{ $index+1 }}
+			</li>
+		</ul>
+
+		<div class="test-container">
+			<input class="input" id="entry" type="text" placeholder="{{ showAnswer || showAnswerOnce ? currentPLU : '' }}" autofocus>
+
+			<div class="question-container">
+				<p ng-if="showImageOrText" class="question-txt" ng-bind="pluList[currentSection][currentPLU]"></p>
+				<img ng-if="!showImageOrText" class="question-img" alt="" ng-src="img/{{ currentPLU }}.jpg">
+			</div>
+
+
+			<p>
+				<input type="checkbox" ng-model="showAnswer" id="showAnswerChk">
+				<label for="showAnswerChk">Visa alltid svar</label>
+			</p>
+
+			<div class="question-list-container">
+				<p class="question-list-item {{ ($parent.learned[key] > learnPoints.half-1 && $parent.learned[key] < learnPoints.full) ? 'halfway' : '';}} {{ $parent.learned[key] > learnPoints.full-1 ? 'complete' : ''; }}" ng-repeat="(key, value) in pluList[currentSection]">
+					<input type="checkbox" ng-checked="$parent.learnBlacklist.includes(key)" ng-click="toggleBlacklistPLU(key)">
+					{{ key +' '+ value }} {{ $parent.learned[key] }}
+				</p>
+				<a class="reset-all" ng-click="clearLearnedBySession()" href="#">Återställ räkning</a>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/angular.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>
