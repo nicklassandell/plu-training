@@ -294,10 +294,6 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
 
 
-	$scope.keypad.addEventListener('mousedown', function(e) {
-		e.target.classList.add('keypress');
-	});
-
 	// On keypad click
 	$scope.keypad.addEventListener('mouseup', function(e) {
 		var send = e.target.dataset.send;
@@ -315,9 +311,10 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			$scope.input.value += send;
 		}
 
+		e.target.classList.add('keypress');
 		$timeout(function() {
 			e.target.classList.remove('keypress');
-		}, 5);
+		}, 20);
 
 		$scope.input.focus();
 		$scope.$apply();
