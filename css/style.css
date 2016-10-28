@@ -246,24 +246,30 @@ body {
   text-align: center;
   font-size: 26px;
   color: #555;
+  transition-duration: .3s;
 }
-/* line 181, ../sass/style.scss */
+/* line 182, ../sass/style.scss */
+#overlay-keypad .num-row .num.keypress {
+  background: #D4D4D4;
+  transition-duration: .05s;
+}
+/* line 187, ../sass/style.scss */
 #overlay-keypad .num-row .num:before {
   content: "";
   display: inline-block;
   height: 100%;
   vertical-align: middle;
 }
-/* line 188, ../sass/style.scss */
+/* line 194, ../sass/style.scss */
 #overlay-keypad .num-row .num:first-child {
   text-indent: 30px;
 }
-/* line 191, ../sass/style.scss */
+/* line 197, ../sass/style.scss */
 #overlay-keypad .num-row .num:last-child {
   text-indent: -30px;
 }
 
-/* line 200, ../sass/style.scss */
+/* line 206, ../sass/style.scss */
 select option:empty {
   display: none;
 }
