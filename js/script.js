@@ -130,6 +130,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
 	$scope.input = document.getElementById('entry');
 	$scope.keypad = document.querySelector('#overlay-keypad');
+	$scope.keypadSpaceholder = document.querySelector('#keypad-spaceholder');
 
 	$scope.isMobile = window.innerWidth < 700;
 
@@ -173,9 +174,16 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
 	$scope.displayKeypad = function() {
 		$scope.keypad.classList.add('visible');
+		$timeout(function() {
+			var height = $scope.keypad.clientHeight;
+			$scope.keypadSpaceholder.style.height = height + 'px';
+			console.log($scope.keypadSpaceholder);
+		}, 5);
+
 	}
 	$scope.hideKeypad = function() {
 		$scope.keypad.classList.remove('visible');
+		$scope.keypadSpaceholder.style.height = 0;
 	}
 
 
@@ -295,7 +303,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			$scope.input.value = '';
 			$scope.showAnswerOnce = true;
 			$scope.learned[$scope.currentPLU] = $scope.currentPLU in $scope.learned ? $scope.learned[$scope.currentPLU] - 1 : 0;
-			
+
 		} else {
 			$scope.input.value += send;
 		}
@@ -316,11 +324,6 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			$scope.hideKeypad();
 		}
 	});
-
-
-	$timeout(function() {
-		$scope.input.focus();
-	}, 100);
 
 
 	// For use in index.html
