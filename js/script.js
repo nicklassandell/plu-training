@@ -131,6 +131,8 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	$scope.input = document.getElementById('entry');
 	$scope.keypad = document.querySelector('#overlay-keypad');
 
+	$scope.isMobile = window.innerWidth < 700;
+
 
 	$scope.checkValue = function() {
 
@@ -299,7 +301,6 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	// Input focus
 	$scope.input.addEventListener('focus', function(e) {
 		$scope.displayKeypad();
-		$scope.input.blur();
 	});
 
 	// Click anywhere outside input to close
