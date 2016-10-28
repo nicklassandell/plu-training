@@ -12,7 +12,7 @@
 		<div class="navigation">
 			<a href="#" ng-click="goToPreviousSection()" class="{{ isFirstSection() ? 'disabled' : '' }}">&lt;</a>
 			<div class="select-container">
-				<span class="label">D Del {{ parseInt(currentSection)+1 }}</span>
+				<span class="label">Del {{ parseInt(currentSection)+1 }}</span>
 				<select ng-model="currentSection">
 					<option ng-repeat="n in pluList track by $index" value="{{$index}}">Del {{ $index+1 }}</option>
 				</select>
