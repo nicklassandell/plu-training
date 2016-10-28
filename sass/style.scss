@@ -21,8 +21,12 @@ body {
 		margin: 20px !important;
 	}
 
-	.question-container .question-txt {
-		font-size: 30px !important;
+	.question-container {
+		height: 150px !important;
+
+		.question-txt {
+			font-size: 30px !important;
+		}
 	}
 }
 
