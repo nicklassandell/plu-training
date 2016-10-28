@@ -258,34 +258,6 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	}
 
 
-
-	$scope.keypad.addEventListener('mouseup', function(e) {
-		var send = e.target.dataset.send;
-		e.stopPropagation();
-
-		if(send === 'del') {
-			$scope.input.value = '';
-		} else {
-			$scope.input.value += send;
-		}
-
-		$scope.input.focus();
-		$scope.$apply();
-	});
-
-	$scope.input.addEventListener('focus', function(e) {
-		$scope.displayKeypad();
-		e.preventDefault();
-		return false;
-	});
-
-	document.addEventListener('mouseup', function(e) {
-		if(e.target.nodeName !== 'INPUT') {
-			$scope.hideKeypad();
-		}
-	});
-
-
 	$scope.$watch('currentSection', function(n) {
 		$scope.setNewPLU();
 	});
@@ -306,6 +278,42 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
 		});
 	});
+
+
+
+	// On keypad click
+	$scope.keypad.addEventListener('mouseup', function(e) {
+		var send = e.target.dataset.send;
+		e.stopPropagation();
+
+		if(send === 'del') {
+			$scope.input.value = '';
+		} else {
+			$scope.input.value += send;
+		}
+
+		$scope.input.focus();
+		$scope.$apply();
+	});
+
+	// Input focus
+	$scope.input.addEventListener('focus', function(e) {
+		$scope.displayKeypad();
+		$scope.input.blur();
+	});
+
+	// Click anywhere outside input to close
+	// Keypad not included because stopPropagation
+	document.addEventListener('mouseup', function(e) {
+		if(e.target.nodeName !== 'INPUT') {
+			$scope.hideKeypad();
+		}
+	});
+
+
+	$timeout(function() {
+		$scope.input.focus();
+	}, 100);
 
 
 	// For use in index.html

@@ -8,7 +8,7 @@
 <body ng-controller="MainCtrl">
 
 	<div class="container">
-
+	a
 		<div class="navigation">
 			<a href="#" ng-click="goToPreviousSection()" class="{{ isFirstSection() ? 'disabled' : '' }}">&lt;</a>
 			<div class="select-container">
@@ -20,7 +20,7 @@
 			<a href="#" ng-click="goToNextSection()" class="{{ isLastSection() ? 'disabled' : '' }}">&gt;</a>
 		</div>
 
-		<input class="input" id="entry" type="number" placeholder="{{ showAnswer || showAnswerOnce ? currentPLU : '' }}" autofocus>
+		<input class="input" id="entry" type="number" placeholder="{{ showAnswer || showAnswerOnce ? currentPLU : '' }}">
 
 		<div class="question-container">
 			<p ng-if="showImageOrText" class="question-txt" ng-bind="pluList[currentSection][currentPLU]"></p>
