@@ -273,7 +273,8 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		$scope.$apply();
 	});
 
-	$scope.input.addEventListener('focus', function() {
+	$scope.input.addEventListener('focus', function(e) {
+		e.preventDefault();
 		$scope.displayKeypad();
 	});
 
