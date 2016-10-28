@@ -217,15 +217,15 @@ body {
 /* line 151, ../sass/style.scss */
 #overlay-keypad {
   position: fixed;
-  top: 50%;
+  top: 55%;
   left: 0;
   right: 0;
   bottom: 0;
-  background: #f5f5f5;
+  background: #F1F1F1;
   transform: translateY(110%);
   transition-duration: .3s;
   display: none;
-  border-top: 1px solid #d8d8d8;
+  border-top: 1px solid #D1D1D1;
   -webkit-user-select: none;
 }
 /* line 164, ../sass/style.scss */
@@ -246,29 +246,24 @@ body {
   text-align: center;
   font-size: 26px;
   color: #555;
-  transition-duration: .2s;
 }
-/* line 182, ../sass/style.scss */
-#overlay-keypad .num-row .num:hover {
-  background: rgba(0, 0, 0, 0.1);
-}
-/* line 186, ../sass/style.scss */
+/* line 181, ../sass/style.scss */
 #overlay-keypad .num-row .num:before {
   content: "";
   display: inline-block;
   height: 100%;
   vertical-align: middle;
 }
-/* line 193, ../sass/style.scss */
+/* line 188, ../sass/style.scss */
 #overlay-keypad .num-row .num:first-child {
   text-indent: 30px;
 }
-/* line 196, ../sass/style.scss */
+/* line 191, ../sass/style.scss */
 #overlay-keypad .num-row .num:last-child {
   text-indent: -30px;
 }
 
-/* line 205, ../sass/style.scss */
+/* line 200, ../sass/style.scss */
 select option:empty {
   display: none;
 }
