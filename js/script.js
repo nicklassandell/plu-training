@@ -290,6 +290,12 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
 		if(send === 'del') {
 			$scope.input.value = '';
+
+		} else if(send === 'ok') {
+			$scope.input.value = '';
+			$scope.showAnswerOnce = true;
+			$scope.learned[$scope.currentPLU] = $scope.currentPLU in $scope.learned ? $scope.learned[$scope.currentPLU] - 1 : 0;
+			
 		} else {
 			$scope.input.value += send;
 		}

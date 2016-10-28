@@ -12,9 +12,9 @@
 		<div class="navigation">
 			<a href="#" ng-click="goToPreviousSection()" class="{{ isFirstSection() ? 'disabled' : '' }}">&lt;</a>
 			<div class="select-container">
-				<span class="label">CDel {{ parseInt(currentSection)+1 }}</span>
+				<span class="label">D Del {{ parseInt(currentSection)+1 }}</span>
 				<select ng-model="currentSection">
-					<option ng-repeat="n in pluList track by $index" value="{{$index}}">CDel {{ $index+1 }}</option>
+					<option ng-repeat="n in pluList track by $index" value="{{$index}}">Del {{ $index+1 }}</option>
 				</select>
 			</div>
 			<a href="#" ng-click="goToNextSection()" class="{{ isLastSection() ? 'disabled' : '' }}">&gt;</a>
@@ -65,8 +65,8 @@
 		
 		<div class="num-row">
 			<div class="num" data-send="0">0</div>
-			<div class="num" data-send="00">00</div>
 			<div class="num" data-send="del">&lt;</div>
+			<div class="num" data-send="ok">OK</div>
 		</div>
 	</div>
 
