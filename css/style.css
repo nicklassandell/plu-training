@@ -92,46 +92,47 @@ body {
   .container {
     margin: 0 !important;
     padding: 20px !important;
+    min-width: 360px !important;
   }
 
-  /* line 28, ../sass/style.scss */
+  /* line 29, ../sass/style.scss */
   .question-container {
     height: 150px !important;
   }
-  /* line 31, ../sass/style.scss */
+  /* line 32, ../sass/style.scss */
   .question-container .question-txt {
     font-size: 30px !important;
   }
 
-  /* line 36, ../sass/style.scss */
+  /* line 37, ../sass/style.scss */
   #overlay-keypad {
     display: block !important;
   }
 }
-/* line 42, ../sass/style.scss */
+/* line 43, ../sass/style.scss */
 .container {
   max-width: 700px;
   background: #FFF;
   padding: 30px;
   margin: 40px auto;
 }
-/* line 48, ../sass/style.scss */
+/* line 49, ../sass/style.scss */
 .container .navigation {
   text-align: center;
   margin-bottom: 20px;
 }
-/* line 52, ../sass/style.scss */
+/* line 53, ../sass/style.scss */
 .container .navigation a {
   font-size: 20px;
   text-decoration: none;
   color: #333;
   padding: 3px;
 }
-/* line 58, ../sass/style.scss */
+/* line 59, ../sass/style.scss */
 .container .navigation a.disabled {
   opacity: .2;
 }
-/* line 64, ../sass/style.scss */
+/* line 65, ../sass/style.scss */
 .container .input {
   display: block;
   width: 100px;
@@ -142,7 +143,7 @@ body {
   border: 0;
   border: 2px solid #bdbdbd;
 }
-/* line 75, ../sass/style.scss */
+/* line 76, ../sass/style.scss */
 .container .question-container {
   height: 250px;
   position: relative;
@@ -152,7 +153,7 @@ body {
   border-left: 0;
   border-right: 0;
 }
-/* line 84, ../sass/style.scss */
+/* line 85, ../sass/style.scss */
 .container .question-container .question-txt, .container .question-container .question-img {
   display: block;
   position: relative;
@@ -160,48 +161,48 @@ body {
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
-/* line 92, ../sass/style.scss */
+/* line 93, ../sass/style.scss */
 .container .question-container .question-txt {
   font-size: 56px;
   text-align: center;
 }
-/* line 97, ../sass/style.scss */
+/* line 98, ../sass/style.scss */
 .container .question-container .question-img {
   max-width: 100%;
   max-height: 100%;
 }
-/* line 103, ../sass/style.scss */
+/* line 104, ../sass/style.scss */
 .container .question-list-container {
   overflow: hidden;
   margin-top: 20px;
   min-height: 150px;
 }
-/* line 108, ../sass/style.scss */
+/* line 109, ../sass/style.scss */
 .container .question-list-container .question-list-item {
   display: block;
   padding: 2px;
 }
-/* line 112, ../sass/style.scss */
+/* line 113, ../sass/style.scss */
 .container .question-list-container .question-list-item.halfway {
   background: #ffea5e;
 }
-/* line 115, ../sass/style.scss */
+/* line 116, ../sass/style.scss */
 .container .question-list-container .question-list-item.complete {
   background: #98e898;
 }
 
-/* line 128, ../sass/style.scss */
+/* line 129, ../sass/style.scss */
 .select-container {
   position: relative;
   display: inline-block;
   overflow: hidden;
   min-width: 50px;
 }
-/* line 134, ../sass/style.scss */
+/* line 135, ../sass/style.scss */
 .select-container span {
   position: static;
 }
-/* line 138, ../sass/style.scss */
+/* line 139, ../sass/style.scss */
 .select-container select {
   position: absolute;
   top: 0;
@@ -212,7 +213,7 @@ body {
   opacity: 0;
 }
 
-/* line 149, ../sass/style.scss */
+/* line 150, ../sass/style.scss */
 #overlay-keypad {
   position: fixed;
   top: 50%;
@@ -225,17 +226,17 @@ body {
   display: none;
   border-top: 1px solid #d8d8d8;
 }
-/* line 161, ../sass/style.scss */
+/* line 162, ../sass/style.scss */
 #overlay-keypad.visible {
   transform: none;
 }
-/* line 165, ../sass/style.scss */
+/* line 166, ../sass/style.scss */
 #overlay-keypad .num-row {
   height: 25%;
   max-width: 700px;
   margin: 0 auto;
 }
-/* line 170, ../sass/style.scss */
+/* line 171, ../sass/style.scss */
 #overlay-keypad .num-row .num {
   height: 100%;
   width: 32.5%;
@@ -244,27 +245,27 @@ body {
   font-size: 26px;
   color: #555;
 }
-/* line 178, ../sass/style.scss */
+/* line 179, ../sass/style.scss */
 #overlay-keypad .num-row .num:hover {
   background: rgba(0, 0, 0, 0.1);
 }
-/* line 182, ../sass/style.scss */
+/* line 183, ../sass/style.scss */
 #overlay-keypad .num-row .num:before {
   content: "";
   display: inline-block;
   height: 100%;
   vertical-align: middle;
 }
-/* line 189, ../sass/style.scss */
+/* line 190, ../sass/style.scss */
 #overlay-keypad .num-row .num:first-child {
   text-indent: 30px;
 }
-/* line 192, ../sass/style.scss */
+/* line 193, ../sass/style.scss */
 #overlay-keypad .num-row .num:last-child {
   text-indent: -30px;
 }
 
-/* line 201, ../sass/style.scss */
+/* line 202, ../sass/style.scss */
 select option:empty {
   display: none;
 }

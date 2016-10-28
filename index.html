@@ -7,7 +7,7 @@
 </head>
 <body ng-controller="MainCtrl">
 
-	<div class="container">
+	<div id="appContainer" class="container">
 
 		<div class="navigation">
 			<a href="#" ng-click="goToPreviousSection()" class="{{ isFirstSection() ? 'disabled' : '' }}">&lt;</a>
@@ -40,7 +40,7 @@
 			</p>
 
 			<br>
-			<p><a class="reset-all" ng-click="clearLearnedBySession()" href="#">Återställ räkning</a> <a href="#" onclick="document.body.webkitRequestFullScreen();">Visa i fullskärm</a></p>
+			<p><a class="reset-all" ng-click="clearLearnedBySession()" href="#">Återställ räkning</a> &nbsp; <a href="#" onclick="document.getElementById('appContainer').webkitRequestFullScreen();">Visa i fullskärm</a></p>
 		</div>
 	</div>
 
