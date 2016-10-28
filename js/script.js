@@ -314,7 +314,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		e.target.classList.add('keypress');
 		$timeout(function() {
 			e.target.classList.remove('keypress');
-		}, 20);
+		}, 100);
 
 		$scope.input.focus();
 		$scope.$apply();

@@ -177,11 +177,10 @@ body {
 			text-align: center;
 			font-size: 26px;
 			color: #555;
-			transition-duration: .3s;
+			transition-duration: .1s;
 
 			&.keypress {
 				background: #D4D4D4;
-				transition-duration: .05s;
 			}
 
 			&:before {
