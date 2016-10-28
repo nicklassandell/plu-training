@@ -102,31 +102,36 @@ body {
   .question-container .question-txt {
     font-size: 30px !important;
   }
+
+  /* line 36, ../sass/style.scss */
+  #overlay-keypad {
+    display: block !important;
+  }
 }
-/* line 38, ../sass/style.scss */
+/* line 42, ../sass/style.scss */
 .container {
   max-width: 700px;
   background: #FFF;
   padding: 30px;
   margin: 40px auto;
 }
-/* line 44, ../sass/style.scss */
+/* line 48, ../sass/style.scss */
 .container .navigation {
   text-align: center;
   margin-bottom: 20px;
 }
-/* line 48, ../sass/style.scss */
+/* line 52, ../sass/style.scss */
 .container .navigation a {
   font-size: 20px;
   text-decoration: none;
   color: #333;
   padding: 3px;
 }
-/* line 54, ../sass/style.scss */
+/* line 58, ../sass/style.scss */
 .container .navigation a.disabled {
   opacity: .2;
 }
-/* line 60, ../sass/style.scss */
+/* line 64, ../sass/style.scss */
 .container .input {
   display: block;
   width: 100px;
@@ -137,7 +142,7 @@ body {
   border: 0;
   border: 2px solid #bdbdbd;
 }
-/* line 71, ../sass/style.scss */
+/* line 75, ../sass/style.scss */
 .container .question-container {
   height: 250px;
   position: relative;
@@ -147,7 +152,7 @@ body {
   border-left: 0;
   border-right: 0;
 }
-/* line 80, ../sass/style.scss */
+/* line 84, ../sass/style.scss */
 .container .question-container .question-txt, .container .question-container .question-img {
   display: block;
   position: relative;
@@ -155,55 +160,55 @@ body {
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
-/* line 88, ../sass/style.scss */
+/* line 92, ../sass/style.scss */
 .container .question-container .question-txt {
   font-size: 56px;
   text-align: center;
 }
-/* line 93, ../sass/style.scss */
+/* line 97, ../sass/style.scss */
 .container .question-container .question-img {
   max-width: 100%;
   max-height: 100%;
 }
-/* line 99, ../sass/style.scss */
+/* line 103, ../sass/style.scss */
 .container .question-list-container {
   overflow: hidden;
   margin-top: 20px;
   min-height: 130px;
 }
-/* line 104, ../sass/style.scss */
+/* line 108, ../sass/style.scss */
 .container .question-list-container .question-list-item {
   display: block;
   float: left;
   clear: both;
   padding: 2px;
 }
-/* line 110, ../sass/style.scss */
+/* line 114, ../sass/style.scss */
 .container .question-list-container .question-list-item.halfway {
   background: #ffea5e;
 }
-/* line 113, ../sass/style.scss */
+/* line 117, ../sass/style.scss */
 .container .question-list-container .question-list-item.complete {
   background: #98e898;
 }
-/* line 118, ../sass/style.scss */
+/* line 122, ../sass/style.scss */
 .container .question-list-container .reset-all {
   display: block;
   clear: both;
 }
 
-/* line 127, ../sass/style.scss */
+/* line 131, ../sass/style.scss */
 .select-container {
   position: relative;
   display: inline-block;
   overflow: hidden;
   min-width: 50px;
 }
-/* line 133, ../sass/style.scss */
+/* line 137, ../sass/style.scss */
 .select-container span {
   position: static;
 }
-/* line 137, ../sass/style.scss */
+/* line 141, ../sass/style.scss */
 .select-container select {
   position: absolute;
   top: 0;
@@ -214,7 +219,50 @@ body {
   opacity: 0;
 }
 
-/* line 150, ../sass/style.scss */
+/* line 152, ../sass/style.scss */
+#overlay-keypad {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #FFFFFF;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  transform: translateY(1000px);
+  transition-duration: .3s;
+  display: none;
+}
+/* line 164, ../sass/style.scss */
+#overlay-keypad.visible {
+  transform: none;
+}
+/* line 168, ../sass/style.scss */
+#overlay-keypad .num-row {
+  height: 25%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+/* line 173, ../sass/style.scss */
+#overlay-keypad .num-row .num {
+  height: 100%;
+  width: 32.5%;
+  display: inline-block;
+  text-align: center;
+  font-size: 36px;
+}
+/* line 180, ../sass/style.scss */
+#overlay-keypad .num-row .num:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+/* line 184, ../sass/style.scss */
+#overlay-keypad .num-row .num:before {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+/* line 196, ../sass/style.scss */
 select option:empty {
   display: none;
 }

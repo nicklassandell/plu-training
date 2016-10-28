@@ -122,13 +122,14 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	$scope.showAnswer = false;
 	$scope.showAnswerOnce = false;
 	$scope.showImageOrText = 1;
-	$scope.input = document.getElementById('entry');
 
 	$scope.learned = {};
 	$scope.learnBlacklist = [];
 
 	$scope.learnPoints = {full: 8, half: 4};
 
+	$scope.input = document.getElementById('entry');
+	$scope.keypad = document.querySelector('#overlay-keypad');
 
 
 	$scope.checkValue = function() {
@@ -166,6 +167,15 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			$scope.currentSection--;
 		}
 	}
+
+
+	$scope.displayKeypad = function() {
+		$scope.keypad.classList.add('visible');
+	}
+	$scope.hideKeypad = function() {
+		$scope.keypad.classList.remove('visible');
+	}
+
 
 	$scope.setNewPLU = function() {
 
@@ -248,6 +258,32 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	}
 
 
+
+	$scope.keypad.addEventListener('mouseup', function(e) {
+		var send = e.target.dataset.send;
+		e.stopPropagation();
+
+		if(send === 'del') {
+			$scope.input.value = '';
+		} else {
+			$scope.input.value += send;
+		}
+
+		$scope.input.focus();
+		$scope.$apply();
+	});
+
+	$scope.input.addEventListener('focus', function() {
+		$scope.displayKeypad();
+	});
+
+	document.addEventListener('mouseup', function(e) {
+		if(e.target.nodeName !== 'INPUT') {
+			$scope.hideKeypad();
+		}
+	});
+
+
 	$scope.$watch('currentSection', function(n) {
 		$scope.setNewPLU();
 	});
@@ -268,6 +304,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
 		});
 	});
+
 
 	// For use in index.html
 	$scope.parseInt = parseInt;

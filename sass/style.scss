@@ -32,6 +32,10 @@ body {
 			font-size: 30px !important;
 		}
 	}
+
+	#overlay-keypad {
+		display: block !important;
+	}
 }
 
 
@@ -142,6 +146,48 @@ body {
 		bottom: 0;
 		z-index: 2;
 		opacity: 0;
+	}
+}
+
+#overlay-keypad {
+	position: fixed;
+	top: 50%;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #FFFFFF;
+	box-shadow: 0 0 30px rgba(0,0,0,.3);
+	transform: translateY(1000px);
+	transition-duration: .3s;
+	display: none;
+
+	&.visible {
+		transform: none;
+	}
+
+	.num-row {
+		height: 25%;
+		max-width: 700px;
+		margin: 0 auto;
+
+		.num {
+			height: 100%;
+			width: 32.5%; // Wtf browsers?
+			display: inline-block;
+			text-align: center;
+			font-size: 36px;
+
+			&:hover {
+				background: rgba(0,0,0,.1);
+			}
+
+			&:before {
+				content: "";
+				display: inline-block;
+				height: 100%;
+				vertical-align: middle;
+			}
+		}
 	}
 }
 
