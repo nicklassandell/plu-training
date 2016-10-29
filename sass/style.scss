@@ -150,7 +150,7 @@ body {
 
 #overlay-keypad {
 	position: fixed;
-	top: 55%;
+	top: 60%;
 	left: 0;
 	right: 0;
 	bottom: 0;
@@ -169,10 +169,11 @@ body {
 		height: 25%;
 		max-width: 700px;
 		margin: 0 auto;
+		text-align: center;
 
 		.num {
 			height: 100%;
-			width: 32.5%; // Wtf browsers?
+			width: 25%;
 			display: inline-block;
 			text-align: center;
 			font-size: 26px;
@@ -188,13 +189,6 @@ body {
 				display: inline-block;
 				height: 100%;
 				vertical-align: middle;
-			}
-
-			&:first-child {
-				text-indent: 30px;
-			}
-			&:last-child {
-				text-indent: -30px;
 			}
 		}
 	}

@@ -28,25 +28,26 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		{
 			'64081' : 'Aubergine styck',
 			'4081' : 'Aubergine',
-			'4729' : 'Bakpotatis',
 			'4899' : 'Bladpersilja bunt',
-			'3263' : 'Blomkål'
+			'3263' : 'Blomkål',
 		},
 		{
-			'4645' : 'Champinjon',
+			'4728' : 'Potatis',
+			'4833' : 'Färskpotatis',
+			'4729' : 'Bakpotatis',
 			'3182' : 'Citron',
 			'4450' : 'Clementin',
-			'3171' : 'Fänkål',
-			'4833' : 'Färskpotatis',
 		},
 		{
+			'4318' : 'Melon cantalope',
+			'3238' : 'Honungsmelon',
+			'4031' : 'Vattenmelon',
 			'4326' : 'Gallia melon',
-			'4728' : 'Potatis',
-			'4629' : 'Purjolök',
-			'3220' : 'Päron',
 			'4540' : 'Rödbetor lösvikt',
+			'4645' : 'Champinjon',
 		},
 		{
+			'4629' : 'Purjolök',
 			'4745' : 'Rabarber',
 			'4089' : 'Rädisor i knippe',
 			'4585' : 'Rotselleri',
@@ -68,10 +69,11 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		},
 		{
 			'4313' : 'Mango',
-			'4318' : 'Melon cantalope',
 			'4526' : 'Morot',
 			'4094' : 'Morot knippe',
-			'4379' : 'Nektarin'
+			'4379' : 'Nektarin',
+			'3171' : 'Fänkål',
+			'3220' : 'Päron',
 		},
 		{
 			'4672' : 'Palsternacka',
@@ -81,11 +83,9 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			'4263' : 'Dadlar'
 		},
 		{
-			'3238' : 'Honungsmelon',
 			'4525' : 'Sparris',
 			'64593' : 'Gurka',
 			'4612' : 'Ingefära',
-			'4031' : 'Vattenmelon'
 		},
 		{
 			'94597' : 'Gurka eko',
@@ -300,7 +300,9 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		e.stopPropagation();
 
 		if(send === 'del') {
-			$scope.input.value = '';
+			var spl = $scope.input.value + "";
+			spl = spl.substring(0, spl.length-1);
+			$scope.input.value = spl;
 
 		} else if(send === 'ok') {
 			$scope.input.value = '';

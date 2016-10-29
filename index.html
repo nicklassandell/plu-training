@@ -20,11 +20,11 @@
 			<a href="#" ng-click="goToNextSection()" class="{{ isLastSection() ? 'disabled' : '' }}">&gt;</a>
 		</div>
 
-		<input class="input" id="entry" type="number" placeholder="{{ showAnswer || showAnswerOnce ? currentPLU : '' }}" ng-readonly="isMobile">
+		<input class="input" id="entry" type="text" placeholder="{{ showAnswer || showAnswerOnce ? currentPLU : '' }}" ng-readonly="isMobile" maxlength="5">
 
 		<div class="question-container">
 			<p ng-if="showImageOrText" class="question-txt" ng-bind="pluList[currentSection][currentPLU]"></p>
-			<img ng-if="!showImageOrText" class="question-img" alt="" ng-src="img/{{ currentPLU }}.jpg">
+			<img ng-if="!showImageOrText" class="question-img" alt="" ng-src="img/{{ currentPLU }}.jpg" alt="pluList[currentSection][currentPLU]">
 		</div>
 
 
@@ -62,7 +62,7 @@
 		</div>
 		<div class="num-row">
 			<div class="num" data-send="0">0</div>
-			<div class="num" data-send="del">&lt;</div>
+			<div class="num" data-send="del">DEL</div>
 			<div class="num" data-send="ok">OK</div>
 		</div>
 	</div>
