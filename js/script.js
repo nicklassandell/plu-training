@@ -293,6 +293,18 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	});
 
 
+	$scope.respond = function(state) {
+
+		if(state === 'ok') {
+			$scope.input.value = '';
+			$scope.learned[$scope.currentPLU] = $scope.currentPLU in $scope.learned ? $scope.learned[$scope.currentPLU] + 1 : 1;
+			$scope.setNewPLU();
+		} else if (state === 'wrong') {
+			$scope.input.value = '';
+			$scope.learned[$scope.currentPLU] = $scope.currentPLU in $scope.learned ? $scope.learned[$scope.currentPLU] - 1 : 0;
+			$scope.setNewPLU();
+		}
+	}
 
 	// On keypad click
 	$scope.keypad.addEventListener('mouseup', function(e) {
@@ -304,11 +316,11 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			spl = spl.substring(0, spl.length-1);
 			$scope.input.value = spl;
 
+		// We know input is wrong
 		} else if(send === 'ok') {
 			$scope.input.value = '';
 			$scope.showAnswerOnce = true;
 			$scope.learned[$scope.currentPLU] = $scope.currentPLU in $scope.learned ? $scope.learned[$scope.currentPLU] - 1 : 0;
-
 		} else {
 			$scope.input.value += send;
 		}

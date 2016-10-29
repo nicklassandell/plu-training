@@ -20,7 +20,11 @@
 			<a href="#" ng-click="goToNextSection()" class="{{ isLastSection() ? 'disabled' : '' }}">&gt;</a>
 		</div>
 
-		<input class="input" id="entry" type="text" placeholder="{{ showAnswer || showAnswerOnce ? currentPLU : '' }}" ng-readonly="isMobile" maxlength="5">
+		<div class="input-row">
+			<a ng-click="respond('wrong')" href="#" class="action wrong">FEL</a>
+			<input class="input" id="entry" type="text" placeholder="{{ showAnswer || showAnswerOnce ? currentPLU : '' }}" ng-readonly="isMobile" maxlength="5">
+			<a ng-click="respond('ok')" href="#" class="action right">OK&nbsp;</a>
+		</div>
 
 		<div class="question-container">
 			<p ng-if="showImageOrText" class="question-txt" ng-bind="pluList[currentSection][currentPLU]"></p>
