@@ -100,50 +100,59 @@ body {
   .input-row {
     font-size: 16px !important;
   }
-
-  /* line 34, ../sass/style.scss */
-  .question-container {
-    height: 150px !important;
+  /* line 33, ../sass/style.scss */
+  .input-row .input {
+    font-weight: 600 !important;
   }
-  /* line 37, ../sass/style.scss */
-  .question-container .question-txt {
-    font-size: 30px !important;
+  /* line 36, ../sass/style.scss */
+  .input-row .input::-webkit-input-placeholder {
+    font-weight: 600 !important;
   }
 
   /* line 42, ../sass/style.scss */
+  .question-container {
+    height: 150px !important;
+  }
+  /* line 45, ../sass/style.scss */
+  .question-container .question-txt {
+    font-size: 20px !important;
+    white-space: nowrap !important;
+  }
+
+  /* line 51, ../sass/style.scss */
   #overlay-keypad {
     display: block !important;
   }
 }
-/* line 48, ../sass/style.scss */
+/* line 57, ../sass/style.scss */
 .container {
   max-width: 700px;
   background: #FFF;
   padding: 30px;
   margin: 40px auto;
 }
-/* line 54, ../sass/style.scss */
+/* line 63, ../sass/style.scss */
 .container .navigation {
   text-align: center;
   margin-bottom: 20px;
 }
-/* line 58, ../sass/style.scss */
+/* line 67, ../sass/style.scss */
 .container .navigation a {
   font-size: 20px;
   text-decoration: none;
   color: #333;
   padding: 3px;
 }
-/* line 64, ../sass/style.scss */
+/* line 73, ../sass/style.scss */
 .container .navigation a.disabled {
   opacity: .2;
 }
-/* line 70, ../sass/style.scss */
+/* line 79, ../sass/style.scss */
 .container .input-row {
   font-size: 24px;
   text-align: center;
 }
-/* line 73, ../sass/style.scss */
+/* line 82, ../sass/style.scss */
 .container .input-row .action {
   font-size: inherit;
   padding: 0 20px;
@@ -151,7 +160,7 @@ body {
   text-decoration: none;
   color: #ADADAD;
 }
-/* line 80, ../sass/style.scss */
+/* line 89, ../sass/style.scss */
 .container .input-row .input {
   display: inline-block;
   width: 120px;
@@ -162,7 +171,11 @@ body {
   border: 0;
   border: 2px solid #bdbdbd;
 }
-/* line 92, ../sass/style.scss */
+/* line 99, ../sass/style.scss */
+.container .input-row .input::-webkit-input-placeholder {
+  color: #7D7D7D;
+}
+/* line 105, ../sass/style.scss */
 .container .question-container {
   height: 250px;
   position: relative;
@@ -172,56 +185,57 @@ body {
   border-left: 0;
   border-right: 0;
 }
-/* line 101, ../sass/style.scss */
-.container .question-container .question-txt, .container .question-container .question-img {
-  display: block;
-  position: relative;
+/* line 114, ../sass/style.scss */
+.container .question-container .question-txt {
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+  display: inline-block;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.4);
+  color: #333;
+  font-size: 30px;
 }
-/* line 109, ../sass/style.scss */
-.container .question-container .question-txt {
-  font-size: 56px;
-  text-align: center;
-}
-/* line 114, ../sass/style.scss */
+/* line 126, ../sass/style.scss */
 .container .question-container .question-img {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 250px;
+  display: block;
+  margin: 0 auto;
 }
-/* line 120, ../sass/style.scss */
+/* line 134, ../sass/style.scss */
 .container .question-list-container {
   overflow: hidden;
   margin-top: 20px;
   min-height: 150px;
 }
-/* line 125, ../sass/style.scss */
+/* line 139, ../sass/style.scss */
 .container .question-list-container .question-list-item {
   display: block;
   padding: 2px;
 }
-/* line 129, ../sass/style.scss */
+/* line 143, ../sass/style.scss */
 .container .question-list-container .question-list-item.halfway {
   background: #ffea5e;
 }
-/* line 132, ../sass/style.scss */
+/* line 146, ../sass/style.scss */
 .container .question-list-container .question-list-item.complete {
   background: #98e898;
 }
 
-/* line 145, ../sass/style.scss */
+/* line 159, ../sass/style.scss */
 .select-container {
   position: relative;
   display: inline-block;
   overflow: hidden;
   min-width: 50px;
 }
-/* line 151, ../sass/style.scss */
+/* line 165, ../sass/style.scss */
 .select-container span {
   position: static;
 }
-/* line 155, ../sass/style.scss */
+/* line 169, ../sass/style.scss */
 .select-container select {
   position: absolute;
   top: 0;
@@ -232,7 +246,7 @@ body {
   opacity: 0;
 }
 
-/* line 166, ../sass/style.scss */
+/* line 180, ../sass/style.scss */
 #overlay-keypad {
   position: fixed;
   top: 60%;
@@ -246,18 +260,18 @@ body {
   border-top: 1px solid #D1D1D1;
   -webkit-user-select: none;
 }
-/* line 179, ../sass/style.scss */
+/* line 193, ../sass/style.scss */
 #overlay-keypad.visible {
   transform: none;
 }
-/* line 183, ../sass/style.scss */
+/* line 197, ../sass/style.scss */
 #overlay-keypad .num-row {
   height: 25%;
   max-width: 700px;
   margin: 0 auto;
   text-align: center;
 }
-/* line 189, ../sass/style.scss */
+/* line 203, ../sass/style.scss */
 #overlay-keypad .num-row .num {
   height: 100%;
   width: 25%;
@@ -267,11 +281,11 @@ body {
   color: #555;
   transition-duration: .1s;
 }
-/* line 198, ../sass/style.scss */
+/* line 212, ../sass/style.scss */
 #overlay-keypad .num-row .num.keypress {
   background: #D4D4D4;
 }
-/* line 202, ../sass/style.scss */
+/* line 216, ../sass/style.scss */
 #overlay-keypad .num-row .num:before {
   content: "";
   display: inline-block;
@@ -279,7 +293,7 @@ body {
   vertical-align: middle;
 }
 
-/* line 214, ../sass/style.scss */
+/* line 228, ../sass/style.scss */
 select option:empty {
   display: none;
 }

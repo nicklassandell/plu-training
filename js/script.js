@@ -85,10 +85,10 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		{
 			'4525' : 'Sparris',
 			'64593' : 'Gurka',
+			'94597' : 'Gurka eko',
 			'4612' : 'Ingefära',
 		},
 		{
-			'94597' : 'Gurka eko',
 			'4061' : 'Isbergssallad',
 			'4645' : 'Kantareller',
 			'3279' : 'Kiwi gul',
@@ -97,31 +97,32 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		{
 			'4520' : 'Kronärtskocka',
 			'4554' : 'Rödkål',
-			'2514' : 'Kanelbulle',
-			'2508' : 'Vaniljhjärtan',
-			'2600' : 'Östras limpor'
 		},
 		{
 			'2189' : 'Hålkaka',
 			'2489' : 'Trehörning',
 			'2503' : 'Ljusa limpor',
 			'2500' : 'Mörka limpor',
-			'29970' : 'Kladdkaka'
 		},
 		{
+			'29970' : 'Kladdkaka',
+			'2514' : 'Kanelbulle',
 			'2479' : 'Fylld munk',
+			'2508' : 'Vaniljhjärtan',
+		},
+		{
 			'2491' : 'Ringmunk',
 			'2510' : 'Muffins',
 			'2212' : 'Östras frallor',
+			'2600' : 'Östras limpor',
 			'2600' : 'Östras bröd',
 		}
 	];
-	$scope.currentSection = 0;
+	$scope.currentSection = localStorage.getItem('currentSection') || 0;
 	$scope.currentPLU = 0;
 
 	$scope.showAnswer = false;
 	$scope.showAnswerOnce = false;
-	$scope.showImageOrText = 1;
 
 	$scope.learned = {};
 	$scope.learnBlacklist = [];
@@ -234,9 +235,6 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		} else {
 			$scope.currentPLU = randomItem;
 		}
-
-		// Randomise img vs text
-		$scope.showImageOrText = Math.round(Math.random());
 	}
 
 	$scope.clearLearnedBySession = function() {
@@ -269,6 +267,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
 	$scope.$watch('currentSection', function(n) {
 		$scope.setNewPLU();
+		localStorage.setItem('currentSection', n);
 	});
 
 
