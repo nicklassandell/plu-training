@@ -225,13 +225,11 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		$scope.keypadSpaceholder.style.height = 0;
 	}
 
-
 	$scope.setNewPLU = function() {
 
 		var items = Object.keys($scope.pluList[$scope.currentSection]),	
 			learned = $scope.learned,
 			black = $scope.learnBlacklist;
-
 
 		// Ignore fully learned
 		angular.forEach(learned, function(val, key) {
@@ -241,18 +239,20 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			}
 		});
 
+
+		// Ignore blacklisted
+		angular.forEach(black, function(val) {
+			if(items.includes(val)) {
+				var pos = items.indexOf(val);
+				items.splice(pos, 1);
+			}
+		});
+
 		// If everything is learned, reset learned
 		if(items.length < 1) {
 			items = Object.keys($scope.pluList[$scope.currentSection]);
 			$scope.clearLearnedBySession();
 		}
-
-
-		// Ignore blacklisted
-		angular.forEach(black, function(val) {
-			var pos = items.indexOf(val);
-			items.splice(pos, 1);
-		});
 
 
 		// If only one item left, return it
