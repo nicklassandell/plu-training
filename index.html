@@ -30,9 +30,8 @@
 			<a ng-click="respond('ok')" href="#" class="action right">OK&nbsp;</a>
 		</div>
 
-		<div class="question-container">
+		<div class="question-container" style="{{ !showImage || 'background-image: url(img/'+ currentPLU +'.jpg);' }}">
 			<p ng-if="showText" class="question-txt" ng-bind="pluList[currentSection][currentPLU]"></p>
-			<img ng-if="showImage" class="question-img" alt="" ng-src="img/{{ currentPLU }}.jpg">
 		</div>
 
 		<p> Visa bild:

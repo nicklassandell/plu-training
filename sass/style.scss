@@ -130,6 +130,8 @@ body {
 		border: 1px solid #cfcfcf;
 		border-left: 0;
 		border-right: 0;
+		background: no-repeat center;
+		background-size: contain;
 
 		.question-txt {
 			position: absolute;
@@ -142,13 +144,6 @@ body {
 			text-shadow: 0 0 3px #FFF;
 			color: #000;
 			font-size: 30px;
-		}
-
-		.question-img {
-			max-width: 100%;
-			max-height: 250px;
-			display: block;
-			margin: 0 auto;
 		}
 	}
 
