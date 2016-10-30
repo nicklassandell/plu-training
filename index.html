@@ -23,18 +23,33 @@
 		<div class="input-row">
 			<a ng-click="respond('wrong')" href="#" class="action wrong">FEL</a>
 			<input class="input" id="entry" type="text" placeholder="{{ showAnswer || showAnswerOnce ? currentPLU : '' }}" ng-readonly="isMobile" maxlength="5">
+			
+			<input type="checkbox" ng-model="showAnswer" id="showAnswerChk">
+			<label class="showAnswerLabel" for="showAnswerChk"></label>
+
 			<a ng-click="respond('ok')" href="#" class="action right">OK&nbsp;</a>
 		</div>
 
 		<div class="question-container">
-			<p class="question-txt" ng-bind="pluList[currentSection][currentPLU]"></p>
-			<img class="question-img" alt="" ng-src="img/{{ currentPLU }}.jpg">
+			<p ng-if="showText" class="question-txt" ng-bind="pluList[currentSection][currentPLU]"></p>
+			<img ng-if="showImage" class="question-img" alt="" ng-src="img/{{ currentPLU }}.jpg">
 		</div>
 
-
-		<p>
-			<input type="checkbox" ng-model="showAnswer" id="showAnswerChk">
-			<label for="showAnswerChk">Visa alltid svar</label>
+		<p> Visa bild:
+			<input type="radio" ng-model="showImageOpt" value="yes" id="showImageAlwChk">
+			<label for="showImageAlwChk">Alltid</label>
+			<input type="radio" ng-model="showImageOpt" value="rand" id="showImageRandChk">
+			<label for="showImageRandChk">Slumpa</label>
+			<input type="radio" ng-model="showImageOpt" value="no" id="ShowImageNevChk">
+			<label for="ShowImageNevChk">Aldrig</label>
+		</p>
+		<p> Visa text:
+			<input type="radio" ng-model="showTextOpt" value="yes" id="showTextAlwChk">
+			<label for="showTextAlwChk">Alltid</label>
+			<input type="radio" ng-model="showTextOpt" value="rand" id="showTextRandChk">
+			<label for="showTextRandChk">Slumpa</label>
+			<input type="radio" ng-model="showTextOpt" value="no" id="ShowTextNevChk">
+			<label for="ShowTextNevChk">Aldrig</label>
 		</p>
 
 		<div class="question-list-container">
