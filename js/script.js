@@ -118,11 +118,16 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			'2600' : 'Östras bröd',
 		}
 	];
-	$scope.currentSection = localStorage.getItem('currentSection') || 0;
+	$scope.currentSection = 0;
 	$scope.currentPLU = 0;
 
 	$scope.showAnswer = false;
 	$scope.showAnswerOnce = false;
+
+	$scope.showImageOpt = 'rand';
+	$scope.showTextOpt = 'yes';
+	$scope.showImage = true;
+	$scope.showText = true;
 
 	$scope.learned = {};
 	$scope.learnBlacklist = [];
@@ -134,6 +139,40 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	$scope.keypadSpaceholder = document.querySelector('#keypad-spaceholder');
 
 	$scope.isMobile = window.innerWidth < 700;
+
+	$scope.modelsToAutoSave = [
+		'currentSection',
+		'showImageOpt',
+		'showTextOpt'
+	];
+
+
+	$scope.init = function() {
+		$scope.autoSave.loadAll();
+		$scope.autoSave.setup();
+	}
+
+	$scope.autoSave = {
+		loadAll: function() {
+			var saved = localStorage;
+
+			angular.forEach(saved, function(val, key) {
+				if($scope.modelsToAutoSave.includes(key)) {
+					$scope[key] = val;
+				}
+			});
+		},
+		setup: function() {
+			angular.forEach($scope.modelsToAutoSave, function(val) {
+				$scope.$watch(val, function(n) {
+					$scope.autoSave.save(val, n);
+				});
+			});
+		},
+		save: function(model, value) {
+			localStorage.setItem(model, value);
+		}
+	};
 
 
 	$scope.checkValue = function() {
@@ -235,6 +274,29 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		} else {
 			$scope.currentPLU = randomItem;
 		}
+
+
+		$scope.updateShowImage();
+		$scope.updateShowText();
+	}
+
+	$scope.updateShowImage = function() {
+		if($scope.showImageOpt == 'yes') {
+			$scope.showImage = true;
+		} else if($scope.showImageOpt == 'no') {
+			$scope.showImage = false;
+		} else if($scope.showImageOpt == 'rand') {
+			$scope.showImage = Math.round(Math.random());
+		}
+	}
+	$scope.updateShowText = function() {
+		if($scope.showTextOpt == 'yes') {
+			$scope.showText = true;
+		} else if($scope.showTextOpt == 'no') {
+			$scope.showText = false;
+		} else if($scope.showTextOpt == 'rand') {
+			$scope.showText = Math.round(Math.random());
+		}
 	}
 
 	$scope.clearLearnedBySession = function() {
@@ -269,6 +331,15 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		$scope.setNewPLU();
 		localStorage.setItem('currentSection', n);
 	});
+
+
+	$scope.$watch('showImageOpt', function() {
+		$scope.updateShowImage();
+	})
+
+	$scope.$watch('showTextOpt', function() {
+		$scope.updateShowText();
+	})
 
 
 	$scope.inputUpdate = function(e) {
@@ -350,5 +421,8 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
 	// For use in index.html
 	$scope.parseInt = parseInt;
+
+
+	$scope.init();
 
 }]);
