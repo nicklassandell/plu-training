@@ -381,6 +381,11 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		var send = e.target.dataset.send;
 		e.stopPropagation();
 
+		// Only register click if you actually clicked a button
+		if(e.target.dataset.send === undefined) {
+			return true;
+		}
+
 		if(send === 'del') {
 			var spl = $scope.input.value + "";
 			spl = spl.substring(0, spl.length-1);
