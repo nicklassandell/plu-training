@@ -53,7 +53,7 @@
 
 		<div class="question-list-container">
 			<p class="question-list-item {{ ($parent.learned[key] > learnPoints.half-1 && $parent.learned[key] < learnPoints.full) ? 'halfway' : '';}} {{ $parent.learned[key] > learnPoints.full-1 ? 'complete' : ''; }}" ng-repeat="(key, value) in pluList[currentSection]">
-				<input type="checkbox" ng-checked="$parent.learnBlacklist.includes(key)" ng-click="toggleBlacklistPLU(key)">
+				<input type="checkbox" ng-checked="$parent.learnBlacklist.includes(key)" ng-click="$parent.toggleBlacklistPLU(key)">
 				{{ key +' '+ value }} {{ $parent.learned[key] }}
 			</p>
 

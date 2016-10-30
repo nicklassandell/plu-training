@@ -230,7 +230,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
 		var items = Object.keys($scope.pluList[$scope.currentSection]),	
 			learned = $scope.learned,
-			black = $scope.blacklisted;
+			black = $scope.learnBlacklist;
 
 
 		// Ignore fully learned
@@ -265,8 +265,6 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		// Get random item from values
 		var randomIndex = Math.ceil(Math.random() * items.length ) - 1,
 			randomItem = items[randomIndex];
-
-		console.log('Between 0-' + items.length, randomIndex);
 
 		// If same as before, randomise again
 		if(randomItem === $scope.currentPLU) {
