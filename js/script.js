@@ -140,12 +140,15 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	$scope.keypad = document.querySelector('#overlay-keypad');
 	$scope.keypadSpaceholder = document.querySelector('#keypad-spaceholder');
 
+	$scope.randomiseSection = false;
+
 	$scope.isMobile = window.innerWidth < 700;
 
 	$scope.modelsToAutoSave = [
 		'currentSection',
 		'showImageOpt',
-		'showTextOpt'
+		'showTextOpt',
+		'randomiseSection'
 	];
 
 
@@ -154,13 +157,14 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		$scope.autoSave.setup();
 	}
 
+
 	$scope.autoSave = {
 		loadAll: function() {
-			var saved = localStorage;
-
-			angular.forEach(saved, function(val, key) {
+			Object.keys(localStorage).forEach(function(key){
 				if($scope.modelsToAutoSave.includes(key)) {
-					$scope[key] = val;
+
+					$scope[key] = localStorage.getItem(key);
+					console.log('restoring', key, $scope[key]);
 				}
 			});
 		},
@@ -173,22 +177,74 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		},
 		save: function(model, value) {
 			localStorage.setItem(model, value);
+			console.log('save', model, value);
 		}
 	};
 
 
-	$scope.checkValue = function() {
+	$scope.checkValue = function(forceState) {
 
 		// Correct
-		if( $scope.currentPLU == $scope.input.value ) {
+		if( $scope.currentPLU == $scope.input.value || forceState === true) {
 			
 			$scope.learned[$scope.currentPLU] = $scope.currentPLU in $scope.learned ? $scope.learned[$scope.currentPLU] + 1 : 1;
+
+			// Randomise section if $scope.randomiseSection is true
+			if ($scope.randomiseSection === true) {
+				$scope.setRandomSection();
+			}
 
 			$scope.setNewPLU();
 			$scope.input.value = '';
 			$scope.showAnswerOnce = false;
 
+
+		} else if(forceState === false || forceState === 'skip') {
+			$scope.input.value = '';
+			$scope.showAnswerOnce = true;
+			$scope.learned[$scope.currentPLU] = $scope.currentPLU in $scope.learned ? $scope.learned[$scope.currentPLU] - 1 : 0;
+
+			// If skipped with "wrong" button
+			if(forceState === 'skip') {
+
+				// Randomise section if $scope.randomiseSection is true
+				if ($scope.randomiseSection === true) {
+					$scope.setRandomSection();
+				}
+
+				// Set new PLU
+				$scope.setNewPLU();
+			}
 		}
+	}
+
+	// Called from right/wrong buttons in ui
+	$scope.respond = function(state) {
+
+		// Pressed "correct"
+		if(state === 'ok') {
+			$scope.checkValue(true);
+
+		// Pressed "wrong"
+		} else if (state === 'wrong') {
+			$scope.checkValue('skip');
+		}
+	}
+
+	// Everytime a key is typed
+	$scope.inputUpdate = function(e) {
+		$scope.$apply(function() {
+
+			// Clicked enter, don't know answer
+			if(e.which == 32 || e.which == 13 || e.which == 188 || e.which == 186) {
+				$scope.checkValue(false);
+
+			// Normal keyup
+			} else {
+				$scope.checkValue();
+			}
+
+		});
 	}
 
 	$scope.getSectionCount = function() {
@@ -301,6 +357,13 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		}
 	}
 
+
+	$scope.setRandomSection = function() {
+		var rand = Math.round(Math.random() * $scope.pluList.length)-1,
+			rand = rand > 0 ? rand : 0;
+		$scope.currentSection = rand;
+	}
+
 	$scope.clearLearnedBySession = function() {
 		angular.forEach($scope.pluList[$scope.currentSection], function(value, key) {
 			if(key in $scope.learned) {
@@ -331,7 +394,6 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
 	$scope.$watch('currentSection', function(n) {
 		$scope.setNewPLU();
-		localStorage.setItem('currentSection', n);
 	});
 
 
@@ -344,39 +406,9 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	})
 
 
-	$scope.inputUpdate = function(e) {
-		$scope.$apply(function() {
-
-			// Clicked enter, pass
-			if(e.which == 32 || e.which == 13 || e.which == 188 || e.which == 186) {
-				$scope.input.value = '';
-				$scope.showAnswerOnce = true;
-				$scope.learned[$scope.currentPLU] = $scope.currentPLU in $scope.learned ? $scope.learned[$scope.currentPLU] - 1 : 0;
-			
-			// Normal keyup
-			} else {
-				$scope.checkValue();
-			}
-
-		});
-	}
 	$scope.input.addEventListener('keyup', function(e) {
 		$scope.inputUpdate(e);
 	});
-
-
-	$scope.respond = function(state) {
-
-		if(state === 'ok') {
-			$scope.input.value = '';
-			$scope.learned[$scope.currentPLU] = $scope.currentPLU in $scope.learned ? $scope.learned[$scope.currentPLU] + 1 : 1;
-			$scope.setNewPLU();
-		} else if (state === 'wrong') {
-			$scope.input.value = '';
-			$scope.learned[$scope.currentPLU] = $scope.currentPLU in $scope.learned ? $scope.learned[$scope.currentPLU] - 1 : 0;
-			$scope.setNewPLU();
-		}
-	}
 
 	// On keypad click
 	$scope.keypad.addEventListener('mouseup', function(e) {

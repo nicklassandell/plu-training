@@ -18,6 +18,9 @@
 				</select>
 			</div>
 			<a href="#" ng-click="goToNextSection()" class="{{ isLastSection() ? 'disabled' : '' }}">&gt;</a>
+
+			<input type="checkbox" ng-checked="randomiseSection" ng-click="randomiseSection = !randomiseSection" id="randomiseSectionChk">
+			<label for="randomiseSectionChk">Slumpa del</label>
 		</div>
 
 		<div class="input-row">
