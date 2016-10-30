@@ -21,13 +21,15 @@
 		</div>
 
 		<div class="input-row">
-			<a ng-click="respond('wrong')" href="#" class="action wrong">FEL</a>
+			<div class="input-left">
+				<a ng-click="respond('wrong')" href="#" class="action wrong">FEL</a>
+			</div>
 			<input class="input" id="entry" type="text" placeholder="{{ showAnswer || showAnswerOnce ? currentPLU : '' }}" ng-readonly="isMobile" maxlength="5">
-			
-			<input type="checkbox" ng-model="showAnswer" id="showAnswerChk">
-			<label class="showAnswerLabel" for="showAnswerChk"></label>
-
-			<a ng-click="respond('ok')" href="#" class="action right">OK&nbsp;</a>
+			<div class="input-right">
+				<a ng-click="respond('ok')" href="#" class="action right">RÄTT</a>
+				<input type="checkbox" ng-model="showAnswer" id="showAnswerChk">
+				<label class="showAnswerLabel" for="showAnswerChk"></label>
+			</div>
 		</div>
 
 		<div class="question-container" style="{{ !showImage || 'background-image: url(img/'+ currentPLU +'.jpg);' }}">

@@ -37,10 +37,6 @@ body {
 				font-weight: 600 !important;
 			}
 		}
-		.showAnswerLabel {
-			top: 12px !important;
-    		left: -22px !important;
-		}
 	}
 
 	.question-container {
@@ -83,13 +79,7 @@ body {
 	.input-row {
 		font-size: 24px;
 		text-align: center;
-		.action {
-			font-size: inherit;
-			padding: 0 20px;
-			display: inline-block;
-			text-decoration: none;
-			color: #ADADAD;
-		}
+		display: flex;
 		.input {
 			display: inline-block;
 			width: 120px;
@@ -105,20 +95,43 @@ body {
 			}
 		}
 
+		.action {
+			display: inline-block;
+			flex: 1;
+			padding: 0 20px;
+			font-size: inherit;
+			text-decoration: none;
+			color: #ADADAD;
+		}
+
+		.input-left, .input-right {
+			display: inline-block;
+			flex: 1;
+			align-self: center;
+			position: relative;
+		}
+
+		.input-left {
+			text-align: right;
+		}
+		.input-right {
+			text-align: left;
+		}
+
 		#showAnswerChk {
 			position: absolute;
 			pointer-events: none;
 			top: -1000000px;
 		}
 		.showAnswerLabel {
-			position: relative;
-			top: 9px;
-			bottom: 0;
-			height: 34px;
-			width: 15px;
+			position: absolute;
+			top: -12px;
+			bottom: -12px;
+			width: 25px;
+			left: -27px;
 			display: inline-block;
-			background: #EAEAEA;
-			left: -30px;
+			opacity: 0;
+			cursor: pointer;
 		}
 	}
 

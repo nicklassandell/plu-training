@@ -105,14 +105,16 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			'2500' : 'Mörka limpor',
 		},
 		{
-			'29970' : 'Kladdkaka',
-			'2514' : 'Kanelbulle',
+			'2491' : 'Ringmunk',
 			'2479' : 'Fylld munk',
 			'2508' : 'Vaniljhjärtan',
 		},
 		{
-			'2491' : 'Ringmunk',
+			'29970' : 'Kladdkaka',
 			'2510' : 'Muffins',
+			'2514' : 'Kanelbulle',
+		},
+		{
 			'2212' : 'Östras frallor',
 			'2600' : 'Östras limpor',
 			'2600' : 'Östras bröd',
