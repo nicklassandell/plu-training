@@ -35,7 +35,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			'4728' : 'Potatis',
 			'4833' : 'Färskpotatis',
 			'4729' : 'Bakpotatis',
-			'3182' : 'Citron',
+			'4091' : 'Sötpotatis',
 			'4450' : 'Clementin',
 		},
 		{
@@ -56,9 +56,9 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		{
 			'4428' : 'Sharon',
 			'4675' : 'Sockerärtor',
-			'4091' : 'Sötpotatis',
 			'4608' : 'Vitlök',
-			'4433' : 'Ananas'
+			'4433' : 'Ananas',
+			'3182' : 'Citron',
 		},
 		{
 			'4446' : 'Granatäpple',
@@ -80,13 +80,12 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			'4397' : 'Passionsfrukt',
 			'4444' : 'Plommon',
 			'4650' : 'Portabella svamp',
-			'4263' : 'Dadlar'
 		},
 		{
 			'4525' : 'Sparris',
 			'64593' : 'Gurka',
 			'94597' : 'Gurka eko',
-			'4612' : 'Ingefära',
+			'4263' : 'Dadlar'
 		},
 		{
 			'4061' : 'Isbergssallad',
@@ -97,6 +96,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		{
 			'4520' : 'Kronärtskocka',
 			'4554' : 'Rödkål',
+			'4612' : 'Ingefära',
 		},
 		{
 			'2189' : 'Hålkaka',
