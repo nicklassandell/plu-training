@@ -4,6 +4,32 @@ var app = angular.module('pluapp', []);
 app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	"use strict";
 
+	// Practice list
+	$scope.pluList = [
+		{
+			'3029' : 'Satsumas',
+			'4067' : 'Zuccini',
+			'4227' : 'Avocado',
+		},
+		{
+			'4252' : 'Jordgubbar',
+			'94620' : 'Ekologisk Spetskål',
+			'6318' : 'Äpple Svenska',
+		},
+		{
+			'4082' : 'Rödlök',
+			'4672' : 'Palsternacka',
+			'4526' : 'Morot'
+		},
+		{
+			'4697' : 'Peppar röd (chili)',
+			'6746' : 'Frysta bär lösvikt',
+			'4608' : 'Vitlök'
+		}
+	];
+
+	/*
+	// Original list
 	$scope.pluList = [
 		{
 			'4011' : 'Banan',
@@ -120,6 +146,8 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			'2600' : 'Östras bröd',
 		}
 	];
+	*/
+
 	$scope.currentSection = 0;
 	$scope.currentPLU = 0;
 
@@ -164,7 +192,6 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 				if($scope.modelsToAutoSave.includes(key)) {
 
 					$scope[key] = localStorage.getItem(key);
-					console.log('restoring', key, $scope[key]);
 				}
 			});
 		},
@@ -177,7 +204,6 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		},
 		save: function(model, value) {
 			localStorage.setItem(model, value);
-			console.log('save', model, value);
 		}
 	};
 
