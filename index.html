@@ -3,6 +3,8 @@
 <head>
 	<title>PLU Träning</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="icon" sizes="192x192" href="favicon-192x192.png">
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body ng-controller="MainCtrl">
@@ -35,7 +37,7 @@
 			</div>
 		</div>
 
-		<div class="question-container" style="{{ !settings.showImage || 'background-image: url(img/'+ settings.currentPLU +'.jpg);' }}">
+		<div class="question-container" style="{{ !settings.showImage || 'background-image: url(img/plu/'+ settings.currentPLU +'.jpg);' }}">
 			<p ng-if="settings.showText" class="question-txt" ng-bind="settings.pluList[settings.currentSection][settings.currentPLU]"></p>
 		</div>
 
