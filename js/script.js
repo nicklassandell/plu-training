@@ -152,7 +152,6 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		{
 			'4011' : 'Bannan',
 			'94011' : 'Ekologisk banan',
-			'4729' : 'Bakpotatis',
 			'3263' : 'Blomkål',
 		},
 
@@ -171,6 +170,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		{
 			'3171' : 'Fänkål',
 			'6746' : 'Frysta bär',
+			'4612' : 'Ingefära',
 		},
 
 		{
@@ -178,10 +178,6 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			'4888' : 'Gräslök knippe',
 			'4446' : 'Granat äpple',
 			'64593' : 'Gurka',
-		},
-
-		{
-			'4612' : 'Ingefära',
 		},
 
 		{
@@ -210,6 +206,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			'4562' : 'Morot',
 			'4313' : 'Mango',
 			'1212' : 'Musli',
+			'4379' : 'Nektarin',
 		},
 
 		{
@@ -218,10 +215,6 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			'4318' : 'Cataloupe melon',
 			'4317' : 'Honungsmelon',
 			'3101' : 'Prel de sabo (Grodskinnsmelon)',
-		},
-
-		{
-			'4379' : 'Nektarin',
 		},
 
 		{
@@ -272,9 +265,6 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			'3050' : 'Vitkål',
 			'3051' : 'Vitkål färsk',
 			'4067' : 'Zuccini',
-		},
-
-		{
 			'6318' : 'Äpplen svenska'
 		}
 	]
@@ -300,6 +290,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	$scope.settings.keypadSpaceholder = document.querySelector('#keypad-spaceholder');
 
 	$scope.settings.randomiseSection = false;
+	$scope.settings.randomisePLU = false;
 
 	$scope.settings.isMobile = window.innerWidth < 700;
 
@@ -307,7 +298,8 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		'currentSection',
 		'showImageOpt',
 		'showTextOpt',
-		'randomiseSection'
+		'randomiseSection',
+		'randomisePLU'
 	];
 
 
@@ -488,19 +480,43 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			return true;
 		}
 
+		// Randomize PLU
+		if($scope.settings.randomisePLU) {
 
-		// Get random item from values
-		var randomIndex = Math.ceil(Math.random() * items.length ) - 1,
-			randomItem = items[randomIndex];
+			// Get random item from values
+			var randomIndex = Math.ceil(Math.random() * items.length ) - 1,
+				randomItem = items[randomIndex];
 
-		// If same as before, randomise again
-		if(randomItem === $scope.settings.currentPLU) {
-			$scope.setNewPLU();
+			// If same as before, randomise again
+			if(randomItem === $scope.settings.currentPLU) {
+				$scope.setNewPLU();
 
-		// New random
+			// New random
+			} else {
+				$scope.settings.currentPLU = randomItem;
+			}
+
+		// Not random, get the preceeding PLU
 		} else {
-			$scope.settings.currentPLU = randomItem;
+
+			// First run, no current PLU, get first one
+			if($scope.settings.currentPLU === 0) {
+				$scope.settings.currentPLU = items[0];
+			
+
+			// Not first run, get preceeding
+			} else {
+				var currIndex = items.indexOf($scope.settings.currentPLU);
+				if(currIndex+1 in items) {
+					$scope.settings.currentPLU = items[ currIndex+1 ];
+				} else {
+					$scope.settings.currentPLU = items[0];
+				}
+			}
+
+
 		}
+
 
 
 		$scope.updateShowImage();

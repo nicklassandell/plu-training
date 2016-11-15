@@ -23,6 +23,8 @@
 
 			<input type="checkbox" ng-checked="settings.randomiseSection" ng-click="settings.randomiseSection = !settings.randomiseSection" id="randomiseSectionChk">
 			<label for="randomiseSectionChk">Slumpa del</label>
+			<input type="checkbox" ng-checked="settings.randomisePLU" ng-click="settings.randomisePLU = !settings.randomisePLU" id="randomisePLUChk">
+			<label for="randomisePLUChk">Slumpa PLU</label>
 		</div>
 
 		<div class="input-row">
@@ -59,9 +61,9 @@
 		</p>
 
 		<div class="question-list-container">
-			<p class="question-list-item {{ ($parent.settings.learned[key] > settings.learnPoints.half-1 && $parent.settings.learned[key] < settings.learnPoints.full) ? 'halfway' : '';}} {{ $parent.settings.learned[key] > settings.learnPoints.full-1 ? 'complete' : ''; }}" ng-repeat="(key, value) in settings.pluList[settings.currentSection]">
+			<p class="question-list-item {{ ($parent.settings.learned[key] > settings.learnPoints.half-1 && $parent.settings.learned[key] < settings.learnPoints.full) ? 'halfway' : '';}} {{ $parent.settings.learned[key] > settings.learnPoints.full-1 ? 'complete' : ''; }} {{ $parent.settings.currentPLU == key ? 'current' : '' }}" ng-repeat="(key, value) in settings.pluList[settings.currentSection]">
 				<input type="checkbox" ng-checked="!$parent.settings.learnBlacklist.includes(key)" ng-click="$parent.toggleBlacklistPLU(key)">
-				{{ key +' '+ value }} {{ $parent.learned[key] }}
+				{{ key +' '+ value }} {{ $parent.settings.learned[key] }}
 			</p>
 
 			<br>

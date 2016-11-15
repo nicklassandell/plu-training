@@ -175,6 +175,10 @@ body {
 			&.complete {
 				background: #98e898;
 			}
+
+			&.current {
+				font-weight: bold;
+			}
 		}
 
 		.reset-all {

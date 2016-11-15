@@ -253,19 +253,23 @@ body {
 .container .question-list-container .question-list-item.complete {
   background: #98e898;
 }
+/* line 179, ../sass/style.scss */
+.container .question-list-container .question-list-item.current {
+  font-weight: bold;
+}
 
-/* line 188, ../sass/style.scss */
+/* line 192, ../sass/style.scss */
 .select-container {
   position: relative;
   display: inline-block;
   overflow: hidden;
   min-width: 50px;
 }
-/* line 194, ../sass/style.scss */
+/* line 198, ../sass/style.scss */
 .select-container span {
   position: static;
 }
-/* line 198, ../sass/style.scss */
+/* line 202, ../sass/style.scss */
 .select-container select {
   position: absolute;
   top: 0;
@@ -276,7 +280,7 @@ body {
   opacity: 0;
 }
 
-/* line 209, ../sass/style.scss */
+/* line 213, ../sass/style.scss */
 #overlay-keypad {
   position: fixed;
   top: 60%;
@@ -290,18 +294,18 @@ body {
   border-top: 1px solid #D1D1D1;
   -webkit-user-select: none;
 }
-/* line 222, ../sass/style.scss */
+/* line 226, ../sass/style.scss */
 #overlay-keypad.visible {
   transform: none;
 }
-/* line 226, ../sass/style.scss */
+/* line 230, ../sass/style.scss */
 #overlay-keypad .num-row {
   height: 25%;
   max-width: 700px;
   margin: 0 auto;
   text-align: center;
 }
-/* line 232, ../sass/style.scss */
+/* line 236, ../sass/style.scss */
 #overlay-keypad .num-row .num {
   height: 100%;
   width: 25%;
@@ -311,11 +315,11 @@ body {
   color: #555;
   transition-duration: .1s;
 }
-/* line 241, ../sass/style.scss */
+/* line 245, ../sass/style.scss */
 #overlay-keypad .num-row .num.keypress {
   background: #D4D4D4;
 }
-/* line 245, ../sass/style.scss */
+/* line 249, ../sass/style.scss */
 #overlay-keypad .num-row .num:before {
   content: "";
   display: inline-block;
@@ -323,7 +327,7 @@ body {
   vertical-align: middle;
 }
 
-/* line 257, ../sass/style.scss */
+/* line 261, ../sass/style.scss */
 select option:empty {
   display: none;
 }
