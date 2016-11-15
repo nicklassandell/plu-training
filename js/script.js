@@ -4,32 +4,8 @@ var app = angular.module('pluapp', []);
 app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	"use strict";
 
-	// Practice list
-	$scope.pluList = [
-		{
-			'3029' : 'Satsumas',
-			'4067' : 'Zuccini',
-			'4227' : 'Avocado',
-		},
-		{
-			'4252' : 'Jordgubbar',
-			'94620' : 'Ekologisk Spetskål',
-			'6318' : 'Äpple Svenska',
-		},
-		{
-			'4082' : 'Rödlök',
-			'4672' : 'Palsternacka',
-			'4526' : 'Morot'
-		},
-		{
-			'4697' : 'Peppar röd (chili)',
-			'6746' : 'Frysta bär lösvikt',
-			'4608' : 'Vitlök'
-		}
-	];
-
 	/*
-	// Original list
+	// Practice list
 	$scope.pluList = [
 		{
 			'4011' : 'Banan',
@@ -125,6 +101,20 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			'4612' : 'Ingefära',
 		},
 		{
+			'3029' : 'Satsumas',
+			'4067' : 'Zuccini',
+			'4227' : 'Avocado',
+		},
+		{
+			'4252' : 'Jordgubbar',
+			'94620' : 'Ekologisk Spetskål',
+			'6318' : 'Äpple Svenska',
+		},
+		{
+			'4697' : 'Peppar röd (chili)',
+			'6746' : 'Frysta bär lösvikt',
+		},
+		{
 			'2189' : 'Hålkaka',
 			'2489' : 'Trehörning',
 			'2503' : 'Ljusa limpor',
@@ -147,6 +137,147 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		}
 	];
 	*/
+
+	// More complete list, sorted alphabetically (mostly)
+	$scope.pluList = [
+		{
+			'4404' : 'Ananas',
+			'4433' : 'Ananas liten',
+			'4081' : 'Aubergine',
+			'3174' : 'Apelsin',
+			'4227' : 'Avocado',
+		},
+
+		{
+			'4011' : 'Bannan',
+			'94011' : 'Ekologisk banan',
+			'4729' : 'Bakpotatis',
+			'3263' : 'Blomkål',
+		},
+
+		{
+			'3182' : 'Citron',
+			'4645' : 'Champinjon',
+			'4646' : 'Champinjon Kastanj',
+			'4450' : 'Clementin',
+		},
+
+		{
+			'7500' : 'Drick back',
+			'4263' : 'Dadlar',
+		},
+
+		{
+			'3171' : 'Fänkål',
+			'6746' : 'Frysta bär',
+		},
+
+		{
+			'4297' : 'Grapefrukt',
+			'4888' : 'Gräslök knippe',
+			'4446' : 'Granat äpple',
+			'64593' : 'Gurka',
+		},
+
+		{
+			'4612' : 'Ingefära',
+		},
+
+		{
+			'4647' : 'Kantarell',
+			'4030' : 'Kiwi',
+			'94030' : 'Kiwi Ekologisk',
+			'3279' : 'Kiwi gul',
+			'4260' : 'Kokosnöt',
+		},
+
+		{
+			'4048' : 'Lime',
+			'1363' : 'Lösgodis',
+			'1351' : 'Naturgodis',
+		},
+
+		{
+			'4662' : 'Schalottenlök',
+			'4666' : 'Gullök',
+			'4082' : 'Rödlök',
+			'4608' : 'Vitlök',
+			'4629' : 'Purjolök',
+		},
+
+		{
+			'4562' : 'Morot',
+			'4313' : 'Mango',
+			'1212' : 'Musli',
+		},
+
+		{
+			'4031' : 'Vattenmelon hel',
+			'4326' : 'Galia melon',
+			'4318' : 'Cataloupe melon',
+			'4317' : 'Honungsmelon',
+			'3101' : 'Prel de sabo (Grodskinnsmelon)',
+		},
+
+		{
+			'4379' : 'Nektarin',
+		},
+
+		{
+			'4672' : 'Palsternacka',
+			'4404' : 'Persika',
+			'4397' : 'Passionsfrukt',
+			'4444' : 'Plommon',
+			'4650' : 'Portabella svamp',
+			'4899' : 'Bladpersilja bunt',
+		},
+
+		{
+			'4728' : 'Potatis',
+			'6405' : 'Potatis säck',
+			'4833' : 'Färskpotatis',
+			'4091' : 'Sötpotatis',
+			'4729' : 'Bakpotatis',
+		},
+
+		{
+			'4688' : 'Paprika röd',
+			'4680' : 'Paprika gul',
+			'4710' : 'Paprika grön',
+			'4697' : 'Peppar röd (chili)',
+		},
+
+		{
+			'4089' : 'Rädisa',
+			'4540' : 'Rödbeta',
+			'6748' : 'Räkor',
+			'4585' : 'Rotselleri',
+			'4554' : 'Rödkål',
+		},
+
+		{
+			'4061' : 'Sallad isberg',
+			'1991' : 'Salladsbar',
+			'4428' : 'Sharon/Kaki',
+			'94602' : 'Spetskål',
+		},
+
+		{
+			'4800' : 'Tomat (svensk)',
+			'4807' : 'Kvisttomat',
+			'4799' : 'Coctail Tomat',
+		},
+
+		{
+			'3050' : 'Vitkål',
+			'3051' : 'Vitkål färsk',
+			'4067' : 'Zuccini',
+		},
+
+		{
+			'6318' : 'Äpplen svenska'
+		}
+	]
 
 	$scope.currentSection = 0;
 	$scope.currentPLU = 0;
