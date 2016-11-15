@@ -4,9 +4,11 @@ var app = angular.module('pluapp', []);
 app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	"use strict";
 
+	$scope.settings = {};
+
 	/*
 	// Practice list
-	$scope.pluList = [
+	$scope.settings.pluList = [
 		{
 			'4011' : 'Banan',
 			'94011' : 'Ekologisk banan',
@@ -139,9 +141,8 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	*/
 
 	// More complete list, sorted alphabetically (mostly)
-	$scope.pluList = [
+	$scope.settings.pluList = [
 		{
-			'4404' : 'Ananas',
 			'4433' : 'Ananas liten',
 			'4081' : 'Aubergine',
 			'3174' : 'Apelsin',
@@ -250,7 +251,6 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		{
 			'4089' : 'Rädisa',
 			'4540' : 'Rödbeta',
-			'6748' : 'Räkor',
 			'4585' : 'Rotselleri',
 			'4554' : 'Rödkål',
 		},
@@ -259,7 +259,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			'4061' : 'Sallad isberg',
 			'1991' : 'Salladsbar',
 			'4428' : 'Sharon/Kaki',
-			'94602' : 'Spetskål',
+			'94620' : 'Spetskål',
 		},
 
 		{
@@ -279,31 +279,31 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		}
 	]
 
-	$scope.currentSection = 0;
-	$scope.currentPLU = 0;
+	$scope.settings.currentSection = 0;
+	$scope.settings.currentPLU = 0;
 
-	$scope.showAnswer = false;
-	$scope.showAnswerOnce = false;
+	$scope.settings.showAnswer = false;
+	$scope.settings.showAnswerOnce = false;
 
-	$scope.showImageOpt = 'rand';
-	$scope.showTextOpt = 'yes';
-	$scope.showImage = true;
-	$scope.showText = true;
+	$scope.settings.showImageOpt = 'rand';
+	$scope.settings.showTextOpt = 'yes';
+	$scope.settings.showImage = true;
+	$scope.settings.showText = true;
 
-	$scope.learned = {};
-	$scope.learnBlacklist = [];
+	$scope.settings.learned = {};
+	$scope.settings.learnBlacklist = [];
 
-	$scope.learnPoints = {full: 8, half: 4};
+	$scope.settings.learnPoints = {full: 8, half: 4};
 
-	$scope.input = document.getElementById('entry');
-	$scope.keypad = document.querySelector('#overlay-keypad');
-	$scope.keypadSpaceholder = document.querySelector('#keypad-spaceholder');
+	$scope.settings.input = document.getElementById('entry');
+	$scope.settings.keypad = document.querySelector('#overlay-keypad');
+	$scope.settings.keypadSpaceholder = document.querySelector('#keypad-spaceholder');
 
-	$scope.randomiseSection = false;
+	$scope.settings.randomiseSection = false;
 
-	$scope.isMobile = window.innerWidth < 700;
+	$scope.settings.isMobile = window.innerWidth < 700;
 
-	$scope.modelsToAutoSave = [
+	$scope.settings.modelsToAutoSave = [
 		'currentSection',
 		'showImageOpt',
 		'showTextOpt',
@@ -320,15 +320,27 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	$scope.autoSave = {
 		loadAll: function() {
 			Object.keys(localStorage).forEach(function(key){
-				if($scope.modelsToAutoSave.includes(key)) {
+				if($scope.settings.modelsToAutoSave.includes(key)) {
 
-					$scope[key] = localStorage.getItem(key);
+					var val = localStorage.getItem(key);
+
+					if(val === 'false') {
+						val = false;
+					} else if(val === 'true') {
+						val = true;
+					}
+
+					if(val == parseInt(val)) {
+						val = parseInt(val);
+					}
+
+					$scope.settings[key] = val;
 				}
 			});
 		},
 		setup: function() {
-			angular.forEach($scope.modelsToAutoSave, function(val) {
-				$scope.$watch(val, function(n) {
+			angular.forEach($scope.settings.modelsToAutoSave, function(val) {
+				$scope.$watch('settings.' + val, function(n) {
 					$scope.autoSave.save(val, n);
 				});
 			});
@@ -342,30 +354,30 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	$scope.checkValue = function(forceState) {
 
 		// Correct
-		if( $scope.currentPLU == $scope.input.value || forceState === true) {
+		if( $scope.settings.currentPLU == $scope.settings.input.value || forceState === true) {
 			
-			$scope.learned[$scope.currentPLU] = $scope.currentPLU in $scope.learned ? $scope.learned[$scope.currentPLU] + 1 : 1;
+			$scope.settings.learned[$scope.settings.currentPLU] = $scope.settings.currentPLU in $scope.settings.learned ? $scope.settings.learned[$scope.settings.currentPLU] + 1 : 1;
 
-			// Randomise section if $scope.randomiseSection is true
-			if ($scope.randomiseSection === true) {
+			// Randomise section if $scope.settings.randomiseSection is true
+			if ($scope.settings.randomiseSection === true) {
 				$scope.setRandomSection();
 			}
 
 			$scope.setNewPLU();
-			$scope.input.value = '';
-			$scope.showAnswerOnce = false;
+			$scope.settings.input.value = '';
+			$scope.settings.showAnswerOnce = false;
 
 
 		} else if(forceState === false || forceState === 'skip') {
-			$scope.input.value = '';
-			$scope.showAnswerOnce = true;
-			$scope.learned[$scope.currentPLU] = $scope.currentPLU in $scope.learned ? $scope.learned[$scope.currentPLU] - 1 : 0;
+			$scope.settings.input.value = '';
+			$scope.settings.showAnswerOnce = true;
+			$scope.settings.learned[$scope.settings.currentPLU] = $scope.settings.currentPLU in $scope.settings.learned ? $scope.settings.learned[$scope.settings.currentPLU] - 1 : 0;
 
 			// If skipped with "wrong" button
 			if(forceState === 'skip') {
 
-				// Randomise section if $scope.randomiseSection is true
-				if ($scope.randomiseSection === true) {
+				// Randomise section if $scope.settings.randomiseSection is true
+				if ($scope.settings.randomiseSection === true) {
 					$scope.setRandomSection();
 				}
 
@@ -389,7 +401,7 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	}
 
 	// Everytime a key is typed
-	$scope.inputUpdate = function(e) {
+	$scope.settings.inputUpdate = function(e) {
 		$scope.$apply(function() {
 
 			// Clicked enter, don't know answer
@@ -405,50 +417,50 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	}
 
 	$scope.getSectionCount = function() {
-		return Object.keys($scope.pluList).length-1;
+		return Object.keys($scope.settings.pluList).length-1;
 	}
 
 	$scope.isFirstSection = function() {
-		return $scope.currentSection === 0;
+		return $scope.settings.currentSection === 0;
 	}
 	$scope.isLastSection = function() {
-		return $scope.currentSection == $scope.getSectionCount();
+		return $scope.settings.currentSection == $scope.getSectionCount();
 	}
 
 	$scope.goToNextSection = function() {
 		if(!$scope.isLastSection()) {
-			$scope.currentSection++;
+			$scope.settings.currentSection++;
 		}
 	}
 	$scope.goToPreviousSection = function() {
 		if(!$scope.isFirstSection()) {
-			$scope.currentSection--;
+			$scope.settings.currentSection--;
 		}
 	}
 
 
 	$scope.displayKeypad = function() {
-		$scope.keypad.classList.add('visible');
+		$scope.settings.keypad.classList.add('visible');
 		$timeout(function() {
-			var height = $scope.keypad.clientHeight;
-			$scope.keypadSpaceholder.style.height = height + 'px';
+			var height = $scope.settings.keypad.clientHeight;
+			$scope.settings.keypadSpaceholder.style.height = height + 'px';
 		}, 5);
 
 	}
 	$scope.hideKeypad = function() {
-		$scope.keypad.classList.remove('visible');
-		$scope.keypadSpaceholder.style.height = 0;
+		$scope.settings.keypad.classList.remove('visible');
+		$scope.settings.keypadSpaceholder.style.height = 0;
 	}
 
 	$scope.setNewPLU = function() {
 
-		var items = Object.keys($scope.pluList[$scope.currentSection]),	
-			learned = $scope.learned,
-			black = $scope.learnBlacklist;
+		var items = Object.keys($scope.settings.pluList[$scope.settings.currentSection]),	
+			learned = $scope.settings.learned,
+			black = $scope.settings.learnBlacklist;
 
 		// Ignore fully learned
 		angular.forEach(learned, function(val, key) {
-			if(val >= $scope.learnPoints.full) {
+			if(val >= $scope.settings.learnPoints.full) {
 				var pos = items.indexOf(key);
 				items.splice(pos, 1);
 			}
@@ -465,14 +477,14 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
 		// If everything is learned, reset learned
 		if(items.length < 1) {
-			items = Object.keys($scope.pluList[$scope.currentSection]);
+			items = Object.keys($scope.settings.pluList[$scope.settings.currentSection]);
 			$scope.clearLearnedBySession();
 		}
 
 
 		// If only one item left, return it
 		if(items.length < 2) {
-			$scope.currentPLU = items.pop();
+			$scope.settings.currentPLU = items.pop();
 			return true;
 		}
 
@@ -482,12 +494,12 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			randomItem = items[randomIndex];
 
 		// If same as before, randomise again
-		if(randomItem === $scope.currentPLU) {
+		if(randomItem === $scope.settings.currentPLU) {
 			$scope.setNewPLU();
 
 		// New random
 		} else {
-			$scope.currentPLU = randomItem;
+			$scope.settings.currentPLU = randomItem;
 		}
 
 
@@ -496,35 +508,35 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	}
 
 	$scope.updateShowImage = function() {
-		if($scope.showImageOpt == 'yes') {
-			$scope.showImage = true;
-		} else if($scope.showImageOpt == 'no') {
-			$scope.showImage = false;
-		} else if($scope.showImageOpt == 'rand') {
-			$scope.showImage = Math.round(Math.random());
+		if($scope.settings.showImageOpt == 'yes') {
+			$scope.settings.showImage = true;
+		} else if($scope.settings.showImageOpt == 'no') {
+			$scope.settings.showImage = false;
+		} else if($scope.settings.showImageOpt == 'rand') {
+			$scope.settings.showImage = Math.round(Math.random());
 		}
 	}
 	$scope.updateShowText = function() {
-		if($scope.showTextOpt == 'yes') {
-			$scope.showText = true;
-		} else if($scope.showTextOpt == 'no') {
-			$scope.showText = false;
-		} else if($scope.showTextOpt == 'rand') {
-			$scope.showText = Math.round(Math.random());
+		if($scope.settings.showTextOpt == 'yes') {
+			$scope.settings.showText = true;
+		} else if($scope.settings.showTextOpt == 'no') {
+			$scope.settings.showText = false;
+		} else if($scope.settings.showTextOpt == 'rand') {
+			$scope.settings.showText = Math.round(Math.random());
 		}
 	}
 
 
 	$scope.setRandomSection = function() {
-		var rand = Math.round(Math.random() * $scope.pluList.length)-1,
+		var rand = Math.round(Math.random() * $scope.settings.pluList.length)-1,
 			rand = rand > 0 ? rand : 0;
-		$scope.currentSection = rand;
+		$scope.settings.currentSection = rand;
 	}
 
 	$scope.clearLearnedBySession = function() {
-		angular.forEach($scope.pluList[$scope.currentSection], function(value, key) {
-			if(key in $scope.learned) {
-				delete $scope.learned[key];
+		angular.forEach($scope.settings.pluList[$scope.settings.currentSection], function(value, key) {
+			if(key in $scope.settings.learned) {
+				delete $scope.settings.learned[key];
 			}
 		});
 	}
@@ -532,19 +544,19 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	$scope.getLearnedBySession = function() {
 		var learned = {};
 
-		angular.forEach($scope.pluList[$scope.currentSection], function(value, key) {
-			if(key in $scope.learned) {
+		angular.forEach($scope.settings.pluList[$scope.settings.currentSection], function(value, key) {
+			if(key in $scope.settings.learned) {
 				learned[key] = value;
 			}
 		});
 	}
 
 	$scope.toggleBlacklistPLU = function(plu) {
-		if($scope.learnBlacklist.includes(plu)) {
-			var pos = $scope.learnBlacklist.indexOf(plu);
-			$scope.learnBlacklist.splice(pos, 1);
+		if($scope.settings.learnBlacklist.includes(plu)) {
+			var pos = $scope.settings.learnBlacklist.indexOf(plu);
+			$scope.settings.learnBlacklist.splice(pos, 1);
 		} else {
-			$scope.learnBlacklist.push(plu);
+			$scope.settings.learnBlacklist.push(plu);
 		}
 	}
 
@@ -563,12 +575,12 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	})
 
 
-	$scope.input.addEventListener('keyup', function(e) {
-		$scope.inputUpdate(e);
+	$scope.settings.input.addEventListener('keyup', function(e) {
+		$scope.settings.inputUpdate(e);
 	});
 
 	// On keypad click
-	$scope.keypad.addEventListener('mouseup', function(e) {
+	$scope.settings.keypad.addEventListener('mouseup', function(e) {
 		var send = e.target.dataset.send;
 		e.stopPropagation();
 
@@ -578,17 +590,17 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 		}
 
 		if(send === 'del') {
-			var spl = $scope.input.value + "";
+			var spl = $scope.settings.input.value + "";
 			spl = spl.substring(0, spl.length-1);
-			$scope.input.value = spl;
+			$scope.settings.input.value = spl;
 
 		// We know input is wrong
 		} else if(send === 'ok') {
-			$scope.input.value = '';
-			$scope.showAnswerOnce = true;
-			$scope.learned[$scope.currentPLU] = $scope.currentPLU in $scope.learned ? $scope.learned[$scope.currentPLU] - 1 : 0;
+			$scope.settings.input.value = '';
+			$scope.settings.showAnswerOnce = true;
+			$scope.settings.learned[$scope.settings.currentPLU] = $scope.settings.currentPLU in $scope.settings.learned ? $scope.settings.learned[$scope.settings.currentPLU] - 1 : 0;
 		} else {
-			$scope.input.value += send;
+			$scope.settings.input.value += send;
 		}
 
 		e.target.classList.add('keypress');
@@ -596,13 +608,13 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 			e.target.classList.remove('keypress');
 		}, 100);
 
-		$scope.input.focus();
+		$scope.settings.input.focus();
 		$scope.$apply();
 	});
 
 	// Input focus
-	$scope.input.addEventListener('focus', function(e) {
-		$scope.inputUpdate(e);
+	$scope.settings.input.addEventListener('focus', function(e) {
+		$scope.settings.inputUpdate(e);
 		$scope.displayKeypad();
 	});
 

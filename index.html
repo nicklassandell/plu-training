@@ -12,14 +12,14 @@
 		<div class="navigation">
 			<a href="#" ng-click="goToPreviousSection()" class="{{ isFirstSection() ? 'disabled' : '' }}">&lt;</a>
 			<div class="select-container">
-				<span class="label">Del {{ parseInt(currentSection)+1 }}</span>
-				<select ng-model="currentSection">
-					<option ng-repeat="n in pluList track by $index" value="{{$index}}">Del {{ $index+1 }}</option>
+				<span class="label">Del {{ parseInt(settings.currentSection)+1 }}</span>
+				<select ng-model="settings.currentSection">
+					<option ng-repeat="n in settings.pluList track by $index" value="{{$index}}">Del {{ $index+1 }}</option>
 				</select>
 			</div>
 			<a href="#" ng-click="goToNextSection()" class="{{ isLastSection() ? 'disabled' : '' }}">&gt;</a>
 
-			<input type="checkbox" ng-checked="randomiseSection" ng-click="randomiseSection = !randomiseSection" id="randomiseSectionChk">
+			<input type="checkbox" ng-checked="settings.randomiseSection" ng-click="settings.randomiseSection = !settings.randomiseSection" id="randomiseSectionChk">
 			<label for="randomiseSectionChk">Slumpa del</label>
 		</div>
 
@@ -27,38 +27,38 @@
 			<div class="input-left">
 				<a ng-click="respond('wrong')" href="#" class="action wrong">FEL</a>
 			</div>
-			<input class="input" id="entry" type="text" placeholder="{{ showAnswer || showAnswerOnce ? currentPLU : '' }}" ng-readonly="isMobile" maxlength="5">
+			<input class="input" id="entry" type="text" placeholder="{{ settings.showAnswer || settings.showAnswerOnce ? settings.currentPLU : '' }}" ng-readonly="settings.isMobile" maxlength="5">
 			<div class="input-right">
 				<a ng-click="respond('ok')" href="#" class="action right">RÄTT</a>
-				<input type="checkbox" ng-model="showAnswer" id="showAnswerChk">
+				<input type="checkbox" ng-model="settings.showAnswer" id="showAnswerChk">
 				<label class="showAnswerLabel" for="showAnswerChk"></label>
 			</div>
 		</div>
 
-		<div class="question-container" style="{{ !showImage || 'background-image: url(img/'+ currentPLU +'.jpg);' }}">
-			<p ng-if="showText" class="question-txt" ng-bind="pluList[currentSection][currentPLU]"></p>
+		<div class="question-container" style="{{ !settings.showImage || 'background-image: url(img/'+ settings.currentPLU +'.jpg);' }}">
+			<p ng-if="settings.showText" class="question-txt" ng-bind="settings.pluList[settings.currentSection][settings.currentPLU]"></p>
 		</div>
 
 		<p> Visa bild:
-			<input type="radio" ng-model="showImageOpt" value="yes" id="showImageAlwChk">
+			<input type="radio" ng-model="settings.showImageOpt" value="yes" id="showImageAlwChk">
 			<label for="showImageAlwChk">Alltid</label>
-			<input type="radio" ng-model="showImageOpt" value="rand" id="showImageRandChk">
+			<input type="radio" ng-model="settings.showImageOpt" value="rand" id="showImageRandChk">
 			<label for="showImageRandChk">Slumpa</label>
-			<input type="radio" ng-model="showImageOpt" value="no" id="ShowImageNevChk">
+			<input type="radio" ng-model="settings.showImageOpt" value="no" id="ShowImageNevChk">
 			<label for="ShowImageNevChk">Aldrig</label>
 		</p>
 		<p> Visa text:
-			<input type="radio" ng-model="showTextOpt" value="yes" id="showTextAlwChk">
+			<input type="radio" ng-model="settings.showTextOpt" value="yes" id="showTextAlwChk">
 			<label for="showTextAlwChk">Alltid</label>
-			<input type="radio" ng-model="showTextOpt" value="rand" id="showTextRandChk">
+			<input type="radio" ng-model="settings.showTextOpt" value="rand" id="showTextRandChk">
 			<label for="showTextRandChk">Slumpa</label>
-			<input type="radio" ng-model="showTextOpt" value="no" id="ShowTextNevChk">
+			<input type="radio" ng-model="settings.showTextOpt" value="no" id="ShowTextNevChk">
 			<label for="ShowTextNevChk">Aldrig</label>
 		</p>
 
 		<div class="question-list-container">
-			<p class="question-list-item {{ ($parent.learned[key] > learnPoints.half-1 && $parent.learned[key] < learnPoints.full) ? 'halfway' : '';}} {{ $parent.learned[key] > learnPoints.full-1 ? 'complete' : ''; }}" ng-repeat="(key, value) in pluList[currentSection]">
-				<input type="checkbox" ng-checked="!$parent.learnBlacklist.includes(key)" ng-click="$parent.toggleBlacklistPLU(key)">
+			<p class="question-list-item {{ ($parent.settings.learned[key] > settings.learnPoints.half-1 && $parent.settings.learned[key] < settings.learnPoints.full) ? 'halfway' : '';}} {{ $parent.settings.learned[key] > settings.learnPoints.full-1 ? 'complete' : ''; }}" ng-repeat="(key, value) in settings.pluList[settings.currentSection]">
+				<input type="checkbox" ng-checked="!$parent.settings.learnBlacklist.includes(key)" ng-click="$parent.toggleBlacklistPLU(key)">
 				{{ key +' '+ value }} {{ $parent.learned[key] }}
 			</p>
 
