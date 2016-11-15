@@ -561,16 +561,16 @@ app.controller('MainCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 	}
 
 
-	$scope.$watch('currentSection', function(n) {
+	$scope.$watch('settings.currentSection', function(n) {
 		$scope.setNewPLU();
 	});
 
 
-	$scope.$watch('showImageOpt', function() {
+	$scope.$watch('settings.showImageOpt', function() {
 		$scope.updateShowImage();
 	})
 
-	$scope.$watch('showTextOpt', function() {
+	$scope.$watch('settings.showTextOpt', function() {
 		$scope.updateShowText();
 	})
 
